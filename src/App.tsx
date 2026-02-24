@@ -1,8 +1,12 @@
+import { RouterProvider } from "react-router"
+import { Providers } from "@/providers/providers"
+import { router } from "@/router"
+
 export function App() {
   return (
-    <div className="flex items-center justify-center min-h-screen">
-      <div className="font-medium">Hello World</div>
-    </div>
+    <Providers>
+      <RouterProvider router={router} />
+    </Providers>
   )
 }
 
