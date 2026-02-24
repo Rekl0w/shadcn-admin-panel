@@ -1,0 +1,11 @@
+{
+  "title": "Welcome back",
+  "description": "Sign in to your admin account",
+  "email": "Email",
+  "emailPlaceholder": "admin@example.com",
+  "password": "Password",
+  "passwordPlaceholder": "Enter your password",
+  "submit": "Sign in",
+  "loading": "Signing in...",
+  "demo": "Demo: any email/password will work"
+}

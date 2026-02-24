@@ -1,0 +1,29 @@
+{
+  "title": "Kullanıcılar",
+  "description": "Kullanıcılarınızı ve rollerini yönetin",
+  "addUser": "Kullanıcı Ekle",
+  "searchPlaceholder": "Kullanıcı ara...",
+  "columns": {
+    "name": "Ad",
+    "email": "E-posta",
+    "role": "Rol",
+    "status": "Durum",
+    "created": "Oluşturulma"
+  },
+  "actions": {
+    "copyUserId": "Kullanıcı ID kopyala",
+    "viewDetails": "Detayları görüntüle",
+    "editUser": "Kullanıcıyı düzenle",
+    "deleteUser": "Kullanıcıyı sil"
+  },
+  "filters": {
+    "role": "Rol",
+    "status": "Durum",
+    "admin": "Yönetici",
+    "editor": "Editör",
+    "viewer": "İzleyici",
+    "active": "Aktif",
+    "inactive": "Pasif",
+    "banned": "Yasaklı"
+  }
+}

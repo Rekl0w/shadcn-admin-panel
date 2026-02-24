@@ -1,0 +1,50 @@
+{
+  "teams": {
+    "label": "Takımlar",
+    "addTeam": "Takım ekle"
+  },
+  "nav": {
+    "platform": "Platform",
+    "home": "Ana Sayfa",
+    "dashboard": "Ana Sayfa",
+    "overview": "Genel Bakış",
+    "analytics": "Analitik",
+    "users": "Kullanıcılar",
+    "allUsers": "Tüm Kullanıcılar",
+    "roles": "Roller",
+    "products": "Ürünler",
+    "allProducts": "Tüm Ürünler",
+    "categories": "Kategoriler",
+    "orders": "Siparişler",
+    "allOrders": "Tüm Siparişler",
+    "returns": "İadeler",
+    "documentation": "Dokümantasyon",
+    "introduction": "Giriş",
+    "apiReference": "API Referansı",
+    "aiModels": "AI Modelleri",
+    "explorer": "Keşfet",
+    "training": "Eğitim",
+    "settings": "Ayarlar",
+    "general": "Genel",
+    "appearance": "Görünüm",
+    "team": "Takım",
+    "billing": "Faturalandırma"
+  },
+  "quickLinks": {
+    "title": "Hızlı Erişim",
+    "designSystem": "Tasarım Sistemi",
+    "salesReport": "Satış Raporu",
+    "roadmap": "Yol Haritası",
+    "view": "Görüntüle",
+    "share": "Paylaş",
+    "delete": "Sil",
+    "more": "Daha Fazla"
+  },
+  "user": {
+    "upgradeToPro": "Pro'ya Yükselt",
+    "account": "Hesap",
+    "billingMenu": "Faturalandırma",
+    "notifications": "Bildirimler",
+    "logOut": "Çıkış Yap"
+  }
+}

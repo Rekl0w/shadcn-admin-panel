@@ -1,0 +1,60 @@
+{
+  "title": "Ayarlar",
+  "description": "Uygulama ayarlarınızı ve tercihlerinizi yönetin",
+  "tabs": {
+    "general": "Genel",
+    "appearance": "Görünüm",
+    "notifications": "Bildirimler",
+    "advanced": "Gelişmiş"
+  },
+  "profile": {
+    "title": "Profil",
+    "description": "Kişisel bilgilerinizi güncelleyin",
+    "name": "Ad",
+    "email": "E-posta",
+    "bio": "Biyografi",
+    "bioPlaceholder": "Kendiniz hakkında bilgi verin..."
+  },
+  "company": {
+    "title": "Şirket",
+    "description": "Şirket bilgilerini yönetin",
+    "companyName": "Şirket Adı",
+    "website": "Web Sitesi"
+  },
+  "theme": {
+    "title": "Tema",
+    "description": "Yönetici panelinin görünümünü özelleştirin",
+    "mode": "Mod",
+    "colorTheme": "Renk Teması",
+    "borderRadius": "Kenar Yuvarlaklığı"
+  },
+  "notifications": {
+    "title": "E-posta Bildirimleri",
+    "description": "Hangi e-postaları alacağınızı seçin",
+    "marketing": "Pazarlama e-postaları",
+    "marketingDesc": "Yeni ürünler ve özellikler hakkında e-postalar alın",
+    "social": "Sosyal bildirimler",
+    "socialDesc": "Sosyal etkinlikler hakkında bildirimler alın",
+    "security": "Güvenlik uyarıları",
+    "securityDesc": "Hesap güvenliği hakkında uyarılar alın"
+  },
+  "api": {
+    "title": "API Yapılandırması",
+    "description": "API anahtarlarını ve uç noktaları yönetin",
+    "baseUrl": "API Temel URL",
+    "apiKey": "API Anahtarı"
+  },
+  "danger": {
+    "title": "Tehlikeli Bölge",
+    "description": "Aşağıdaki işlemler geri alınamaz",
+    "deleteAccount": "Hesabı Sil",
+    "deleteAccountDesc": "Hesabınızı ve tüm verilerinizi kalıcı olarak silin",
+    "delete": "Sil"
+  },
+  "toasts": {
+    "profileUpdated": "Profil güncellendi!",
+    "companyUpdated": "Şirket bilgileri güncellendi!",
+    "apiSaved": "API ayarları kaydedildi!",
+    "deleteDisabled": "Bu işlem demo modunda devre dışı"
+  }
+}

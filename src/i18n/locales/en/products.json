@@ -1,0 +1,30 @@
+{
+  "title": "Products",
+  "description": "Manage your product catalog",
+  "addProduct": "Add Product",
+  "searchPlaceholder": "Search products...",
+  "columns": {
+    "product": "Product",
+    "category": "Category",
+    "price": "Price",
+    "stock": "Stock",
+    "status": "Status"
+  },
+  "actions": {
+    "copyProductId": "Copy product ID",
+    "viewDetails": "View details",
+    "editProduct": "Edit product",
+    "deleteProduct": "Delete product"
+  },
+  "filters": {
+    "category": "Category",
+    "status": "Status",
+    "electronics": "Electronics",
+    "clothing": "Clothing",
+    "sports": "Sports",
+    "home": "Home",
+    "inStock": "In Stock",
+    "lowStock": "Low Stock",
+    "outOfStock": "Out of Stock"
+  }
+}

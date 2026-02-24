@@ -1,0 +1,44 @@
+{
+  "stats": {
+    "totalRevenue": "Toplam Gelir",
+    "orders": "Siparişler",
+    "products": "Ürünler",
+    "activeUsers": "Aktif Kullanıcılar",
+    "fromLastMonth": "geçen aya kıyasla"
+  },
+  "tabs": {
+    "revenue": "Gelir",
+    "visitors": "Ziyaretçiler",
+    "categories": "Kategoriler"
+  },
+  "charts": {
+    "revenueOverview": "Gelir Özeti",
+    "revenueOverviewDesc": "Mevcut yıl için aylık gelir",
+    "ordersTrend": "Sipariş Trendi",
+    "ordersTrendDesc": "Mevcut yıl için aylık siparişler",
+    "weeklyTraffic": "Haftalık Trafik",
+    "weeklyTrafficDesc": "Bu haftanın ziyaretçi ve sayfa görüntülemeleri",
+    "salesByCategory": "Kategoriye Göre Satışlar",
+    "salesByCategoryDesc": "Ürün kategorisi performansı"
+  },
+  "recentOrders": {
+    "title": "Son Siparişler",
+    "description": "Mağazadan son 5 sipariş"
+  },
+  "systemOverview": {
+    "title": "Sistem Genel Bakışı",
+    "description": "Sunucu kaynak kullanımı",
+    "cpuUsage": "CPU Kullanımı",
+    "memory": "Bellek",
+    "storage": "Depolama",
+    "bandwidth": "Bant Genişliği",
+    "networkIO": "Ağ G/Ç"
+  },
+  "chartLabels": {
+    "revenue": "Gelir",
+    "ordersLabel": "Siparişler",
+    "visitorsLabel": "Ziyaretçiler",
+    "pageViews": "Sayfa Görüntülemeleri",
+    "sales": "Satışlar"
+  }
+}

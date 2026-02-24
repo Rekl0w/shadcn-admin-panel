@@ -1,10 +1,11 @@
-import { ChevronRight } from "lucide-react"
-import { Link, useLocation } from "react-router"
+import { ChevronRightIcon } from "@/components/ui/chevron-right";
+import { Link, useLocation } from "react-router";
+import { useTranslation } from "react-i18next";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "@/components/ui/collapsible"
+} from "@/components/ui/collapsible";
 import {
   SidebarGroup,
   SidebarGroupLabel,
@@ -14,30 +15,31 @@ import {
   SidebarMenuSub,
   SidebarMenuSubButton,
   SidebarMenuSubItem,
-} from "@/components/ui/sidebar"
+} from "@/components/ui/sidebar";
 
 export interface NavMainItem {
-  title: string
-  url: string
-  icon?: React.ComponentType<{ className?: string }>
-  isActive?: boolean
+  title: string;
+  url: string;
+  icon?: React.ComponentType<{ className?: string }>;
+  isActive?: boolean;
   items?: {
-    title: string
-    url: string
-  }[]
+    title: string;
+    url: string;
+  }[];
 }
 
 export function NavMain({ items }: { items: NavMainItem[] }) {
-  const location = useLocation()
+  const location = useLocation();
+  const { t } = useTranslation("sidebar");
 
   return (
     <SidebarGroup>
-      <SidebarGroupLabel>Platform</SidebarGroupLabel>
+      <SidebarGroupLabel>{t("nav.platform", "Platform")}</SidebarGroupLabel>
       <SidebarMenu>
         {items.map((item) => {
           const isActive =
             item.url === location.pathname ||
-            item.items?.some((sub) => sub.url === location.pathname)
+            item.items?.some((sub) => sub.url === location.pathname);
 
           return (
             <Collapsible
@@ -47,13 +49,14 @@ export function NavMain({ items }: { items: NavMainItem[] }) {
             >
               <SidebarMenuItem>
                 <CollapsibleTrigger
-                  render={
-                    <SidebarMenuButton tooltip={item.title} />
-                  }
+                  render={<SidebarMenuButton tooltip={item.title} />}
                 >
                   {item.icon && <item.icon />}
                   <span>{item.title}</span>
-                  <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+                  <ChevronRightIcon
+                    size={16}
+                    className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90"
+                  />
                 </CollapsibleTrigger>
                 <CollapsibleContent>
                   <SidebarMenuSub>
@@ -71,9 +74,9 @@ export function NavMain({ items }: { items: NavMainItem[] }) {
                 </CollapsibleContent>
               </SidebarMenuItem>
             </Collapsible>
-          )
+          );
         })}
       </SidebarMenu>
     </SidebarGroup>
-  )
+  );
 }

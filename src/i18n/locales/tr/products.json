@@ -1,0 +1,30 @@
+{
+  "title": "Ürünler",
+  "description": "Ürün kataloğunuzu yönetin",
+  "addProduct": "Ürün Ekle",
+  "searchPlaceholder": "Ürün ara...",
+  "columns": {
+    "product": "Ürün",
+    "category": "Kategori",
+    "price": "Fiyat",
+    "stock": "Stok",
+    "status": "Durum"
+  },
+  "actions": {
+    "copyProductId": "Ürün ID kopyala",
+    "viewDetails": "Detayları görüntüle",
+    "editProduct": "Ürünü düzenle",
+    "deleteProduct": "Ürünü sil"
+  },
+  "filters": {
+    "category": "Kategori",
+    "status": "Durum",
+    "electronics": "Elektronik",
+    "clothing": "Giyim",
+    "sports": "Spor",
+    "home": "Ev",
+    "inStock": "Stokta",
+    "lowStock": "Düşük Stok",
+    "outOfStock": "Stokta Yok"
+  }
+}

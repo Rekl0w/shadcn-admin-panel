@@ -1,5 +1,7 @@
-import * as React from "react"
-import { ChevronsUpDown, Plus } from "lucide-react"
+import * as React from "react";
+import { ChevronsUpDownIcon } from "@/components/ui/chevrons-up-down";
+import { PlusIcon } from "@/components/ui/plus";
+import { useTranslation } from "react-i18next";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -8,26 +10,27 @@ import {
   DropdownMenuSeparator,
   DropdownMenuShortcut,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu";
 import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
-} from "@/components/ui/sidebar"
+} from "@/components/ui/sidebar";
 
 export interface Team {
-  name: string
-  logo: React.ElementType
-  plan: string
+  name: string;
+  logo: React.ElementType;
+  plan: string;
 }
 
 export function TeamSwitcher({ teams }: { teams: Team[] }) {
-  const { isMobile } = useSidebar()
-  const [activeTeam, setActiveTeam] = React.useState(teams[0])
+  const { isMobile } = useSidebar();
+  const [activeTeam, setActiveTeam] = React.useState(teams[0]);
+  const { t } = useTranslation("sidebar");
 
   if (!activeTeam) {
-    return null
+    return null;
   }
 
   return (
@@ -49,7 +52,7 @@ export function TeamSwitcher({ teams }: { teams: Team[] }) {
               <span className="truncate font-medium">{activeTeam.name}</span>
               <span className="truncate text-xs">{activeTeam.plan}</span>
             </div>
-            <ChevronsUpDown className="ml-auto" />
+            <ChevronsUpDownIcon size={16} className="ml-auto" />
           </DropdownMenuTrigger>
           <DropdownMenuContent
             className="w-56 rounded-lg"
@@ -58,7 +61,7 @@ export function TeamSwitcher({ teams }: { teams: Team[] }) {
             sideOffset={4}
           >
             <DropdownMenuLabel className="text-muted-foreground text-xs">
-              Teams
+              {t("teams.label")}
             </DropdownMenuLabel>
             {teams.map((team, index) => (
               <DropdownMenuItem
@@ -76,13 +79,15 @@ export function TeamSwitcher({ teams }: { teams: Team[] }) {
             <DropdownMenuSeparator />
             <DropdownMenuItem className="gap-2 p-2">
               <div className="flex size-6 items-center justify-center rounded-md border bg-transparent">
-                <Plus className="size-4" />
+                <PlusIcon size={16} />
               </div>
-              <div className="text-muted-foreground font-medium">Add team</div>
+              <div className="text-muted-foreground font-medium">
+                {t("teams.addTeam")}
+              </div>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </SidebarMenuItem>
     </SidebarMenu>
-  )
+  );
 }

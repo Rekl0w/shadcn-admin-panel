@@ -1,19 +1,25 @@
-import { type Column } from "@tanstack/react-table"
-import { ArrowDown, ArrowUp, ChevronsUpDown, EyeOff } from "lucide-react"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
+import { type Column } from "@tanstack/react-table";
+import { ArrowDownIcon } from "@/components/ui/arrow-down";
+import { ArrowUpIcon } from "@/components/ui/arrow-up";
+import { ChevronsUpDownIcon } from "@/components/ui/chevrons-up-down";
+import { EyeOffIcon } from "@/components/ui/eye-off";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu";
+import { useTranslation } from "react-i18next";
 
-interface DataTableColumnHeaderProps<TData, TValue>
-  extends React.HTMLAttributes<HTMLDivElement> {
-  column: Column<TData, TValue>
-  title: string
+interface DataTableColumnHeaderProps<
+  TData,
+  TValue,
+> extends React.HTMLAttributes<HTMLDivElement> {
+  column: Column<TData, TValue>;
+  title: string;
 }
 
 export function DataTableColumnHeader<TData, TValue>({
@@ -21,8 +27,10 @@ export function DataTableColumnHeader<TData, TValue>({
   title,
   className,
 }: DataTableColumnHeaderProps<TData, TValue>) {
+  const { t } = useTranslation("common");
+
   if (!column.getCanSort()) {
-    return <div className={cn(className)}>{title}</div>
+    return <div className={cn(className)}>{title}</div>;
   }
 
   return (
@@ -39,29 +47,32 @@ export function DataTableColumnHeader<TData, TValue>({
         >
           <span>{title}</span>
           {column.getIsSorted() === "desc" ? (
-            <ArrowDown className="ml-2 h-4 w-4" />
+            <ArrowDownIcon size={16} className="ml-2" />
           ) : column.getIsSorted() === "asc" ? (
-            <ArrowUp className="ml-2 h-4 w-4" />
+            <ArrowUpIcon size={16} className="ml-2" />
           ) : (
-            <ChevronsUpDown className="ml-2 h-4 w-4" />
+            <ChevronsUpDownIcon size={16} className="ml-2" />
           )}
         </DropdownMenuTrigger>
         <DropdownMenuContent align="start">
           <DropdownMenuItem onClick={() => column.toggleSorting(false)}>
-            <ArrowUp className="mr-2 h-3.5 w-3.5 text-muted-foreground/70" />
-            Asc
+            <ArrowUpIcon size={14} className="mr-2 text-muted-foreground/70" />
+            {t("table.asc")}
           </DropdownMenuItem>
           <DropdownMenuItem onClick={() => column.toggleSorting(true)}>
-            <ArrowDown className="mr-2 h-3.5 w-3.5 text-muted-foreground/70" />
-            Desc
+            <ArrowDownIcon
+              size={14}
+              className="mr-2 text-muted-foreground/70"
+            />
+            {t("table.desc")}
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem onClick={() => column.toggleVisibility(false)}>
-            <EyeOff className="mr-2 h-3.5 w-3.5 text-muted-foreground/70" />
-            Hide
+            <EyeOffIcon size={14} className="mr-2 text-muted-foreground/70" />
+            {t("table.hide")}
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     </div>
-  )
+  );
 }

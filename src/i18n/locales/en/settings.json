@@ -1,0 +1,60 @@
+{
+  "title": "Settings",
+  "description": "Manage your application settings and preferences",
+  "tabs": {
+    "general": "General",
+    "appearance": "Appearance",
+    "notifications": "Notifications",
+    "advanced": "Advanced"
+  },
+  "profile": {
+    "title": "Profile",
+    "description": "Update your personal information",
+    "name": "Name",
+    "email": "Email",
+    "bio": "Bio",
+    "bioPlaceholder": "Tell us about yourself..."
+  },
+  "company": {
+    "title": "Company",
+    "description": "Manage company details",
+    "companyName": "Company Name",
+    "website": "Website"
+  },
+  "theme": {
+    "title": "Theme",
+    "description": "Customize the look and feel of the admin panel",
+    "mode": "Mode",
+    "colorTheme": "Color Theme",
+    "borderRadius": "Border Radius"
+  },
+  "notifications": {
+    "title": "Email Notifications",
+    "description": "Choose what emails you receive",
+    "marketing": "Marketing emails",
+    "marketingDesc": "Receive emails about new products and features",
+    "social": "Social notifications",
+    "socialDesc": "Receive notifications about social activity",
+    "security": "Security alerts",
+    "securityDesc": "Receive alerts about account security"
+  },
+  "api": {
+    "title": "API Configuration",
+    "description": "Manage API keys and endpoints",
+    "baseUrl": "API Base URL",
+    "apiKey": "API Key"
+  },
+  "danger": {
+    "title": "Danger Zone",
+    "description": "Irreversible actions below",
+    "deleteAccount": "Delete Account",
+    "deleteAccountDesc": "Permanently delete your account and all data",
+    "delete": "Delete"
+  },
+  "toasts": {
+    "profileUpdated": "Profile updated!",
+    "companyUpdated": "Company info updated!",
+    "apiSaved": "API settings saved!",
+    "deleteDisabled": "This action is disabled in demo mode"
+  }
+}

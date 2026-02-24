@@ -12,125 +12,131 @@ import {
   Settings2,
   ShoppingCart,
   Users,
-} from "lucide-react"
-import { NavMain, type NavMainItem } from "@/components/layout/nav-main"
-import { NavProjects, type NavProjectItem } from "@/components/layout/nav-projects"
-import { NavUser } from "@/components/layout/nav-user"
-import { TeamSwitcher, type Team } from "@/components/layout/team-switcher"
+} from "lucide-react";
+import { useTranslation } from "react-i18next";
+import { NavMain, type NavMainItem } from "@/components/layout/nav-main";
+import {
+  NavProjects,
+  type NavProjectItem,
+} from "@/components/layout/nav-projects";
+import { NavUser } from "@/components/layout/nav-user";
+import { TeamSwitcher, type Team } from "@/components/layout/team-switcher";
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
   SidebarRail,
-} from "@/components/ui/sidebar"
-
-const teams: Team[] = [
-  {
-    name: "Admin Panel",
-    logo: GalleryVerticalEnd,
-    plan: "Enterprise",
-  },
-  {
-    name: "Acme Corp.",
-    logo: AudioWaveform,
-    plan: "Startup",
-  },
-  {
-    name: "Dev Team",
-    logo: Command,
-    plan: "Free",
-  },
-]
-
-const navMain: NavMainItem[] = [
-  {
-    title: "Dashboard",
-    url: "/",
-    icon: LayoutDashboard,
-    isActive: true,
-    items: [
-      { title: "Overview", url: "/" },
-      { title: "Analytics", url: "/analytics" },
-    ],
-  },
-  {
-    title: "Users",
-    url: "/users",
-    icon: Users,
-    items: [
-      { title: "All Users", url: "/users" },
-      { title: "Roles", url: "/users/roles" },
-    ],
-  },
-  {
-    title: "Products",
-    url: "/products",
-    icon: Package,
-    items: [
-      { title: "All Products", url: "/products" },
-      { title: "Categories", url: "/products/categories" },
-    ],
-  },
-  {
-    title: "Orders",
-    url: "/orders",
-    icon: ShoppingCart,
-    items: [
-      { title: "All Orders", url: "/orders" },
-      { title: "Returns", url: "/orders/returns" },
-    ],
-  },
-  {
-    title: "Documentation",
-    url: "/docs",
-    icon: BookOpen,
-    items: [
-      { title: "Introduction", url: "/docs" },
-      { title: "API Reference", url: "/docs/api" },
-    ],
-  },
-  {
-    title: "AI Models",
-    url: "/models",
-    icon: Bot,
-    items: [
-      { title: "Explorer", url: "/models" },
-      { title: "Training", url: "/models/training" },
-    ],
-  },
-  {
-    title: "Settings",
-    url: "/settings",
-    icon: Settings2,
-    items: [
-      { title: "General", url: "/settings" },
-      { title: "Appearance", url: "/settings/appearance" },
-      { title: "Team", url: "/settings/team" },
-      { title: "Billing", url: "/settings/billing" },
-    ],
-  },
-]
-
-const quickLinks: NavProjectItem[] = [
-  {
-    name: "Design System",
-    url: "/",
-    icon: Frame,
-  },
-  {
-    name: "Sales Report",
-    url: "/analytics",
-    icon: PieChart,
-  },
-  {
-    name: "Roadmap",
-    url: "/",
-    icon: Map,
-  },
-]
+} from "@/components/ui/sidebar";
 
 export function AppSidebar(props: React.ComponentProps<typeof Sidebar>) {
+  const { t } = useTranslation("sidebar");
+
+  const teams: Team[] = [
+    {
+      name: "Admin Panel",
+      logo: GalleryVerticalEnd,
+      plan: "Enterprise",
+    },
+    {
+      name: "Acme Corp.",
+      logo: AudioWaveform,
+      plan: "Startup",
+    },
+    {
+      name: "Dev Team",
+      logo: Command,
+      plan: "Free",
+    },
+  ];
+
+  const navMain: NavMainItem[] = [
+    {
+      title: t("nav.dashboard"),
+      url: "/",
+      icon: LayoutDashboard,
+      isActive: true,
+      items: [
+        { title: t("nav.overview"), url: "/" },
+        { title: t("nav.analytics"), url: "/analytics" },
+      ],
+    },
+    {
+      title: t("nav.users"),
+      url: "/users",
+      icon: Users,
+      items: [
+        { title: t("nav.allUsers"), url: "/users" },
+        { title: t("nav.roles"), url: "/users/roles" },
+      ],
+    },
+    {
+      title: t("nav.products"),
+      url: "/products",
+      icon: Package,
+      items: [
+        { title: t("nav.allProducts"), url: "/products" },
+        { title: t("nav.categories"), url: "/products/categories" },
+      ],
+    },
+    {
+      title: t("nav.orders"),
+      url: "/orders",
+      icon: ShoppingCart,
+      items: [
+        { title: t("nav.allOrders"), url: "/orders" },
+        { title: t("nav.returns"), url: "/orders/returns" },
+      ],
+    },
+    {
+      title: t("nav.documentation"),
+      url: "/docs",
+      icon: BookOpen,
+      items: [
+        { title: t("nav.introduction"), url: "/docs" },
+        { title: t("nav.apiReference"), url: "/docs/api" },
+      ],
+    },
+    {
+      title: t("nav.aiModels"),
+      url: "/models",
+      icon: Bot,
+      items: [
+        { title: t("nav.explorer"), url: "/models" },
+        { title: t("nav.training"), url: "/models/training" },
+      ],
+    },
+    {
+      title: t("nav.settings"),
+      url: "/settings",
+      icon: Settings2,
+      items: [
+        { title: t("nav.general"), url: "/settings" },
+        { title: t("nav.appearance"), url: "/settings/appearance" },
+        { title: t("nav.team"), url: "/settings/team" },
+        { title: t("nav.billing"), url: "/settings/billing" },
+      ],
+    },
+  ];
+
+  const quickLinks: NavProjectItem[] = [
+    {
+      name: t("quickLinks.designSystem"),
+      url: "/",
+      icon: Frame,
+    },
+    {
+      name: t("quickLinks.salesReport"),
+      url: "/analytics",
+      icon: PieChart,
+    },
+    {
+      name: t("quickLinks.roadmap"),
+      url: "/",
+      icon: Map,
+    },
+  ];
+
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
@@ -145,5 +151,5 @@ export function AppSidebar(props: React.ComponentProps<typeof Sidebar>) {
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>
-  )
+  );
 }

@@ -1,0 +1,49 @@
+{
+  "actions": {
+    "save": "Kaydet",
+    "saveChanges": "Değişiklikleri Kaydet",
+    "cancel": "İptal",
+    "delete": "Sil",
+    "edit": "Düzenle",
+    "create": "Oluştur",
+    "search": "Ara",
+    "filter": "Filtrele",
+    "reset": "Sıfırla",
+    "clearFilters": "Filtreleri temizle",
+    "copyId": "ID Kopyala",
+    "viewDetails": "Detayları görüntüle",
+    "backToDashboard": "Ana Sayfaya Dön",
+    "toggleColumns": "Sütunları aç/kapa",
+    "view": "Görünüm"
+  },
+  "pagination": {
+    "rowsPerPage": "Sayfa başına satır",
+    "page": "Sayfa {{current}} / {{total}}",
+    "goToFirstPage": "İlk sayfaya git",
+    "goToPreviousPage": "Önceki sayfaya git",
+    "goToNextPage": "Sonraki sayfaya git",
+    "goToLastPage": "Son sayfaya git",
+    "rowsSelected": "{{total}} satırdan {{count}} tanesi seçildi."
+  },
+  "table": {
+    "noResults": "Sonuç bulunamadı.",
+    "actions": "İşlemler",
+    "asc": "Artan",
+    "desc": "Azalan",
+    "hide": "Gizle"
+  },
+  "theme": {
+    "toggleTheme": "Temayı değiştir",
+    "light": "Açık",
+    "dark": "Koyu",
+    "system": "Sistem"
+  },
+  "notFound": {
+    "title": "Sayfa Bulunamadı",
+    "description": "Aradığınız sayfa bulunamadı veya taşınmış olabilir."
+  },
+  "language": {
+    "tr": "Türkçe",
+    "en": "English"
+  }
+}

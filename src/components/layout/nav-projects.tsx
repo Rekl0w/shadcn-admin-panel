@@ -1,17 +1,13 @@
-import {
-  Folder,
-  Forward,
-  MoreHorizontal,
-  Trash2,
-} from "lucide-react"
-import { Link } from "react-router"
+import { Folder, Forward, MoreHorizontal, Trash2 } from "lucide-react";
+import { Link } from "react-router";
+import { useTranslation } from "react-i18next";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu";
 import {
   SidebarGroup,
   SidebarGroupLabel,
@@ -20,20 +16,21 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
-} from "@/components/ui/sidebar"
+} from "@/components/ui/sidebar";
 
 export interface NavProjectItem {
-  name: string
-  url: string
-  icon: React.ComponentType<{ className?: string }>
+  name: string;
+  url: string;
+  icon: React.ComponentType<{ className?: string }>;
 }
 
 export function NavProjects({ projects }: { projects: NavProjectItem[] }) {
-  const { isMobile } = useSidebar()
+  const { isMobile } = useSidebar();
+  const { t } = useTranslation("sidebar");
 
   return (
     <SidebarGroup className="group-data-[collapsible=icon]:hidden">
-      <SidebarGroupLabel>Quick Links</SidebarGroupLabel>
+      <SidebarGroupLabel>{t("quickLinks.title")}</SidebarGroupLabel>
       <SidebarMenu>
         {projects.map((item) => (
           <SidebarMenuItem key={item.name}>
@@ -53,16 +50,16 @@ export function NavProjects({ projects }: { projects: NavProjectItem[] }) {
               >
                 <DropdownMenuItem>
                   <Folder className="text-muted-foreground" />
-                  <span>View</span>
+                  <span>{t("quickLinks.view", "View")}</span>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
                   <Forward className="text-muted-foreground" />
-                  <span>Share</span>
+                  <span>{t("quickLinks.share", "Share")}</span>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>
                   <Trash2 className="text-muted-foreground" />
-                  <span>Delete</span>
+                  <span>{t("quickLinks.delete", "Delete")}</span>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -71,10 +68,10 @@ export function NavProjects({ projects }: { projects: NavProjectItem[] }) {
         <SidebarMenuItem>
           <SidebarMenuButton className="text-sidebar-foreground/70">
             <MoreHorizontal className="text-sidebar-foreground/70" />
-            <span>More</span>
+            <span>{t("quickLinks.more", "More")}</span>
           </SidebarMenuButton>
         </SidebarMenuItem>
       </SidebarMenu>
     </SidebarGroup>
-  )
+  );
 }

@@ -1,0 +1,44 @@
+{
+  "stats": {
+    "totalRevenue": "Total Revenue",
+    "orders": "Orders",
+    "products": "Products",
+    "activeUsers": "Active Users",
+    "fromLastMonth": "from last month"
+  },
+  "tabs": {
+    "revenue": "Revenue",
+    "visitors": "Visitors",
+    "categories": "Categories"
+  },
+  "charts": {
+    "revenueOverview": "Revenue Overview",
+    "revenueOverviewDesc": "Monthly revenue for the current year",
+    "ordersTrend": "Orders Trend",
+    "ordersTrendDesc": "Monthly orders for the current year",
+    "weeklyTraffic": "Weekly Traffic",
+    "weeklyTrafficDesc": "Visitors and page views this week",
+    "salesByCategory": "Sales by Category",
+    "salesByCategoryDesc": "Product category performance"
+  },
+  "recentOrders": {
+    "title": "Recent Orders",
+    "description": "Latest 5 orders from the store"
+  },
+  "systemOverview": {
+    "title": "System Overview",
+    "description": "Server resource utilization",
+    "cpuUsage": "CPU Usage",
+    "memory": "Memory",
+    "storage": "Storage",
+    "bandwidth": "Bandwidth",
+    "networkIO": "Network I/O"
+  },
+  "chartLabels": {
+    "revenue": "Revenue",
+    "ordersLabel": "Orders",
+    "visitorsLabel": "Visitors",
+    "pageViews": "Page Views",
+    "sales": "Sales"
+  }
+}

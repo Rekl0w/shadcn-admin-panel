@@ -1,0 +1,49 @@
+{
+  "actions": {
+    "save": "Save",
+    "saveChanges": "Save Changes",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "search": "Search",
+    "filter": "Filter",
+    "reset": "Reset",
+    "clearFilters": "Clear filters",
+    "copyId": "Copy ID",
+    "viewDetails": "View details",
+    "backToDashboard": "Back to Dashboard",
+    "toggleColumns": "Toggle columns",
+    "view": "View"
+  },
+  "pagination": {
+    "rowsPerPage": "Rows per page",
+    "page": "Page {{current}} of {{total}}",
+    "goToFirstPage": "Go to first page",
+    "goToPreviousPage": "Go to previous page",
+    "goToNextPage": "Go to next page",
+    "goToLastPage": "Go to last page",
+    "rowsSelected": "{{count}} of {{total}} row(s) selected."
+  },
+  "table": {
+    "noResults": "No results found.",
+    "actions": "Actions",
+    "asc": "Asc",
+    "desc": "Desc",
+    "hide": "Hide"
+  },
+  "theme": {
+    "toggleTheme": "Toggle theme",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "description": "The page you're looking for doesn't exist or has been moved."
+  },
+  "language": {
+    "tr": "Türkçe",
+    "en": "English"
+  }
+}

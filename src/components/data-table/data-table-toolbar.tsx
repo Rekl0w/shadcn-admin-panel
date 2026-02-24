@@ -1,23 +1,24 @@
-import { type Table } from "@tanstack/react-table"
-import { X } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { DataTableViewOptions } from "@/components/data-table/data-table-view-options"
-import { DataTableFacetedFilter } from "@/components/data-table/data-table-faceted-filter"
+import { type Table } from "@tanstack/react-table";
+import { XIcon } from "@/components/ui/x";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { DataTableViewOptions } from "@/components/data-table/data-table-view-options";
+import { DataTableFacetedFilter } from "@/components/data-table/data-table-faceted-filter";
+import { useTranslation } from "react-i18next";
 
 interface DataTableToolbarProps<TData> {
-  table: Table<TData>
-  searchKey?: string
-  searchPlaceholder?: string
+  table: Table<TData>;
+  searchKey?: string;
+  searchPlaceholder?: string;
   filterableColumns?: {
-    id: string
-    title: string
+    id: string;
+    title: string;
     options: {
-      label: string
-      value: string
-      icon?: React.ComponentType<{ className?: string }>
-    }[]
-  }[]
+      label: string;
+      value: string;
+      icon?: React.ComponentType<{ className?: string }>;
+    }[];
+  }[];
 }
 
 export function DataTableToolbar<TData>({
@@ -26,7 +27,8 @@ export function DataTableToolbar<TData>({
   searchPlaceholder = "Filter...",
   filterableColumns = [],
 }: DataTableToolbarProps<TData>) {
-  const isFiltered = table.getState().columnFilters.length > 0
+  const { t } = useTranslation("common");
+  const isFiltered = table.getState().columnFilters.length > 0;
 
   return (
     <div className="flex items-center justify-between">
@@ -52,7 +54,7 @@ export function DataTableToolbar<TData>({
                 title={column.title}
                 options={column.options}
               />
-            )
+            ),
         )}
         {isFiltered && (
           <Button
@@ -60,12 +62,12 @@ export function DataTableToolbar<TData>({
             onClick={() => table.resetColumnFilters()}
             className="h-8 px-2 lg:px-3"
           >
-            Reset
-            <X className="ml-2 h-4 w-4" />
+            {t("actions.reset")}
+            <XIcon size={16} className="ml-2" />
           </Button>
         )}
       </div>
       <DataTableViewOptions table={table} />
     </div>
-  )
+  );
 }

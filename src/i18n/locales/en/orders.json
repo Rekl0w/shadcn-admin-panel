@@ -1,0 +1,34 @@
+{
+  "title": "Orders",
+  "description": "Track and manage customer orders",
+  "searchPlaceholder": "Search orders...",
+  "columns": {
+    "orderId": "Order ID",
+    "customer": "Customer",
+    "items": "Items",
+    "total": "Total",
+    "status": "Status",
+    "date": "Date"
+  },
+  "actions": {
+    "copyOrderId": "Copy order ID",
+    "viewDetails": "View details",
+    "trackShipment": "Track shipment",
+    "processRefund": "Process refund"
+  },
+  "filters": {
+    "status": "Status",
+    "pending": "Pending",
+    "processing": "Processing",
+    "shipped": "Shipped",
+    "delivered": "Delivered",
+    "cancelled": "Cancelled"
+  },
+  "statuses": {
+    "pending": "Pending",
+    "processing": "Processing",
+    "shipped": "Shipped",
+    "delivered": "Delivered",
+    "cancelled": "Cancelled"
+  }
+}

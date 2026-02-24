@@ -1,81 +1,109 @@
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Separator } from "@/components/ui/separator"
-import { Switch } from "@/components/ui/switch"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Textarea } from "@/components/ui/textarea"
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Separator } from "@/components/ui/separator";
+import { Switch } from "@/components/ui/switch";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Textarea } from "@/components/ui/textarea";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
-import { toast } from "sonner"
-import { useThemeStore, colorThemes, type ColorTheme } from "@/store/theme-store"
+} from "@/components/ui/select";
+import { toast } from "sonner";
+import {
+  useThemeStore,
+  colorThemes,
+  type ColorTheme,
+} from "@/store/theme-store";
+import { useTranslation } from "react-i18next";
 
 export default function SettingsPage() {
-  const { mode, setMode, colorTheme, setColorTheme, radius, setRadius } = useThemeStore()
+  const { mode, setMode, colorTheme, setColorTheme, radius, setRadius } =
+    useThemeStore();
+  const { t } = useTranslation("settings");
+  const { t: tCommon } = useTranslation("common");
 
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-2xl font-bold tracking-tight">Settings</h2>
-        <p className="text-muted-foreground">Manage your application settings and preferences</p>
+        <h2 className="text-2xl font-bold tracking-tight">{t("title")}</h2>
+        <p className="text-muted-foreground">{t("description")}</p>
       </div>
 
       <Tabs defaultValue="general" className="space-y-4">
         <TabsList>
-          <TabsTrigger value="general">General</TabsTrigger>
-          <TabsTrigger value="appearance">Appearance</TabsTrigger>
-          <TabsTrigger value="notifications">Notifications</TabsTrigger>
-          <TabsTrigger value="advanced">Advanced</TabsTrigger>
+          <TabsTrigger value="general">{t("tabs.general")}</TabsTrigger>
+          <TabsTrigger value="appearance">{t("tabs.appearance")}</TabsTrigger>
+          <TabsTrigger value="notifications">
+            {t("tabs.notifications")}
+          </TabsTrigger>
+          <TabsTrigger value="advanced">{t("tabs.advanced")}</TabsTrigger>
         </TabsList>
 
         <TabsContent value="general" className="space-y-4">
           <Card>
             <CardHeader>
-              <CardTitle>Profile</CardTitle>
-              <CardDescription>Update your personal information</CardDescription>
+              <CardTitle>{t("profile.title")}</CardTitle>
+              <CardDescription>{t("profile.description")}</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="grid gap-4 md:grid-cols-2">
                 <div className="space-y-2">
-                  <Label htmlFor="name">Name</Label>
+                  <Label htmlFor="name">{t("profile.name")}</Label>
                   <Input id="name" defaultValue="Admin User" />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="email">Email</Label>
-                  <Input id="email" defaultValue="admin@example.com" type="email" />
+                  <Label htmlFor="email">{t("profile.email")}</Label>
+                  <Input
+                    id="email"
+                    defaultValue="admin@example.com"
+                    type="email"
+                  />
                 </div>
               </div>
               <div className="space-y-2">
-                <Label htmlFor="bio">Bio</Label>
-                <Textarea id="bio" placeholder="Tell us about yourself..." />
+                <Label htmlFor="bio">{t("profile.bio")}</Label>
+                <Textarea id="bio" placeholder={t("profile.bioPlaceholder")} />
               </div>
-              <Button onClick={() => toast.success("Profile updated!")}>Save Changes</Button>
+              <Button onClick={() => toast.success(t("toasts.profileUpdated"))}>
+                {tCommon("actions.saveChanges")}
+              </Button>
             </CardContent>
           </Card>
 
           <Card>
             <CardHeader>
-              <CardTitle>Company</CardTitle>
-              <CardDescription>Manage company details</CardDescription>
+              <CardTitle>{t("company.title")}</CardTitle>
+              <CardDescription>{t("company.description")}</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="grid gap-4 md:grid-cols-2">
                 <div className="space-y-2">
-                  <Label htmlFor="company">Company Name</Label>
+                  <Label htmlFor="company">{t("company.companyName")}</Label>
                   <Input id="company" defaultValue="Acme Inc." />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="website">Website</Label>
-                  <Input id="website" defaultValue="https://acme.com" type="url" />
+                  <Label htmlFor="website">{t("company.website")}</Label>
+                  <Input
+                    id="website"
+                    defaultValue="https://acme.com"
+                    type="url"
+                  />
                 </div>
               </div>
-              <Button onClick={() => toast.success("Company info updated!")}>Save Changes</Button>
+              <Button onClick={() => toast.success(t("toasts.companyUpdated"))}>
+                {tCommon("actions.saveChanges")}
+              </Button>
             </CardContent>
           </Card>
         </TabsContent>
@@ -83,20 +111,31 @@ export default function SettingsPage() {
         <TabsContent value="appearance" className="space-y-4">
           <Card>
             <CardHeader>
-              <CardTitle>Theme</CardTitle>
-              <CardDescription>Customize the look and feel of the admin panel</CardDescription>
+              <CardTitle>{t("theme.title")}</CardTitle>
+              <CardDescription>{t("theme.description")}</CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="space-y-3">
-                <Label>Mode</Label>
-                <Select value={mode} onValueChange={(value) => setMode(value as "light" | "dark" | "system")}>
+                <Label>{t("theme.mode")}</Label>
+                <Select
+                  value={mode}
+                  onValueChange={(value) =>
+                    setMode(value as "light" | "dark" | "system")
+                  }
+                >
                   <SelectTrigger className="w-48">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="light">Light</SelectItem>
-                    <SelectItem value="dark">Dark</SelectItem>
-                    <SelectItem value="system">System</SelectItem>
+                    <SelectItem value="light">
+                      {tCommon("theme.light")}
+                    </SelectItem>
+                    <SelectItem value="dark">
+                      {tCommon("theme.dark")}
+                    </SelectItem>
+                    <SelectItem value="system">
+                      {tCommon("theme.system")}
+                    </SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -104,7 +143,7 @@ export default function SettingsPage() {
               <Separator />
 
               <div className="space-y-3">
-                <Label>Color Theme</Label>
+                <Label>{t("theme.colorTheme")}</Label>
                 <div className="grid grid-cols-5 gap-3">
                   {(Object.keys(colorThemes) as ColorTheme[]).map((theme) => (
                     <button
@@ -134,8 +173,10 @@ export default function SettingsPage() {
 
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <Label>Border Radius</Label>
-                  <span className="text-sm text-muted-foreground">{radius.toFixed(2)}rem</span>
+                  <Label>{t("theme.borderRadius")}</Label>
+                  <span className="text-sm text-muted-foreground">
+                    {radius.toFixed(2)}rem
+                  </span>
                 </div>
                 <div className="flex gap-2">
                   {[0, 0.25, 0.5, 0.625, 0.75, 1.0].map((r) => (
@@ -157,16 +198,33 @@ export default function SettingsPage() {
         <TabsContent value="notifications" className="space-y-4">
           <Card>
             <CardHeader>
-              <CardTitle>Email Notifications</CardTitle>
-              <CardDescription>Choose what emails you receive</CardDescription>
+              <CardTitle>{t("notifications.title")}</CardTitle>
+              <CardDescription>
+                {t("notifications.description")}
+              </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               {[
-                { id: "marketing", label: "Marketing emails", desc: "Receive emails about new products and features" },
-                { id: "social", label: "Social notifications", desc: "Receive notifications about social activity" },
-                { id: "security", label: "Security alerts", desc: "Receive alerts about account security" },
+                {
+                  id: "marketing",
+                  label: t("notifications.marketing"),
+                  desc: t("notifications.marketingDesc"),
+                },
+                {
+                  id: "social",
+                  label: t("notifications.social"),
+                  desc: t("notifications.socialDesc"),
+                },
+                {
+                  id: "security",
+                  label: t("notifications.security"),
+                  desc: t("notifications.securityDesc"),
+                },
               ].map((item) => (
-                <div key={item.id} className="flex items-center justify-between rounded-lg border p-4">
+                <div
+                  key={item.id}
+                  className="flex items-center justify-between rounded-lg border p-4"
+                >
                   <div className="space-y-0.5">
                     <Label>{item.label}</Label>
                     <p className="text-sm text-muted-foreground">{item.desc}</p>
@@ -181,38 +239,48 @@ export default function SettingsPage() {
         <TabsContent value="advanced" className="space-y-4">
           <Card>
             <CardHeader>
-              <CardTitle>API Configuration</CardTitle>
-              <CardDescription>Manage API keys and endpoints</CardDescription>
+              <CardTitle>{t("api.title")}</CardTitle>
+              <CardDescription>{t("api.description")}</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="api-url">API Base URL</Label>
+                <Label htmlFor="api-url">{t("api.baseUrl")}</Label>
                 <Input id="api-url" defaultValue="http://localhost:3000/api" />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="api-key">API Key</Label>
-                <Input id="api-key" type="password" defaultValue="sk-xxxxxxxxxxxxx" />
+                <Label htmlFor="api-key">{t("api.apiKey")}</Label>
+                <Input
+                  id="api-key"
+                  type="password"
+                  defaultValue="sk-xxxxxxxxxxxxx"
+                />
               </div>
-              <Button onClick={() => toast.success("API settings saved!")}>Save</Button>
+              <Button onClick={() => toast.success(t("toasts.apiSaved"))}>
+                {tCommon("actions.save")}
+              </Button>
             </CardContent>
           </Card>
 
           <Card className="border-destructive">
             <CardHeader>
-              <CardTitle className="text-destructive">Danger Zone</CardTitle>
-              <CardDescription>Irreversible actions below</CardDescription>
+              <CardTitle className="text-destructive">
+                {t("danger.title")}
+              </CardTitle>
+              <CardDescription>{t("danger.description")}</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="flex items-center justify-between rounded-lg border border-destructive/20 p-4">
                 <div>
-                  <p className="font-medium">Delete Account</p>
-                  <p className="text-sm text-muted-foreground">Permanently delete your account and all data</p>
+                  <p className="font-medium">{t("danger.deleteAccount")}</p>
+                  <p className="text-sm text-muted-foreground">
+                    {t("danger.deleteAccountDesc")}
+                  </p>
                 </div>
                 <Button
                   variant="destructive"
-                  onClick={() => toast.error("This action is disabled in demo mode")}
+                  onClick={() => toast.error(t("toasts.deleteDisabled"))}
                 >
-                  Delete
+                  {t("danger.delete")}
                 </Button>
               </div>
             </CardContent>
@@ -220,5 +288,5 @@ export default function SettingsPage() {
         </TabsContent>
       </Tabs>
     </div>
-  )
+  );
 }

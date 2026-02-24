@@ -1,0 +1,34 @@
+{
+  "title": "Siparişler",
+  "description": "Müşteri siparişlerini takip edin ve yönetin",
+  "searchPlaceholder": "Sipariş ara...",
+  "columns": {
+    "orderId": "Sipariş No",
+    "customer": "Müşteri",
+    "items": "Ürünler",
+    "total": "Toplam",
+    "status": "Durum",
+    "date": "Tarih"
+  },
+  "actions": {
+    "copyOrderId": "Sipariş ID kopyala",
+    "viewDetails": "Detayları görüntüle",
+    "trackShipment": "Kargo takibi",
+    "processRefund": "İade işlemi"
+  },
+  "filters": {
+    "status": "Durum",
+    "pending": "Beklemede",
+    "processing": "İşleniyor",
+    "shipped": "Kargoda",
+    "delivered": "Teslim Edildi",
+    "cancelled": "İptal Edildi"
+  },
+  "statuses": {
+    "pending": "Beklemede",
+    "processing": "İşleniyor",
+    "shipped": "Kargoda",
+    "delivered": "Teslim Edildi",
+    "cancelled": "İptal Edildi"
+  }
+}

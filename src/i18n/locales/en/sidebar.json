@@ -1,0 +1,50 @@
+{
+  "teams": {
+    "label": "Teams",
+    "addTeam": "Add team"
+  },
+  "nav": {
+    "platform": "Platform",
+    "home": "Home",
+    "dashboard": "Dashboard",
+    "overview": "Overview",
+    "analytics": "Analytics",
+    "users": "Users",
+    "allUsers": "All Users",
+    "roles": "Roles",
+    "products": "Products",
+    "allProducts": "All Products",
+    "categories": "Categories",
+    "orders": "Orders",
+    "allOrders": "All Orders",
+    "returns": "Returns",
+    "documentation": "Documentation",
+    "introduction": "Introduction",
+    "apiReference": "API Reference",
+    "aiModels": "AI Models",
+    "explorer": "Explorer",
+    "training": "Training",
+    "settings": "Settings",
+    "general": "General",
+    "appearance": "Appearance",
+    "team": "Team",
+    "billing": "Billing"
+  },
+  "quickLinks": {
+    "title": "Quick Links",
+    "designSystem": "Design System",
+    "salesReport": "Sales Report",
+    "roadmap": "Roadmap",
+    "view": "View",
+    "share": "Share",
+    "delete": "Delete",
+    "more": "More"
+  },
+  "user": {
+    "upgradeToPro": "Upgrade to Pro",
+    "account": "Account",
+    "billingMenu": "Billing",
+    "notifications": "Notifications",
+    "logOut": "Log out"
+  }
+}

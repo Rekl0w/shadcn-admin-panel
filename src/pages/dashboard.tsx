@@ -1,23 +1,26 @@
+import { Package, ShoppingCart } from "lucide-react";
+import { ArrowDownRightIcon } from "@/components/ui/arrow-down-right";
+import { ArrowUpRightIcon } from "@/components/ui/arrow-up-right";
+import { DollarSignIcon } from "@/components/ui/dollar-sign";
+import { UsersIcon } from "@/components/ui/users";
+import { TrendingUpIcon } from "@/components/ui/trending-up";
+import { ActivityIcon } from "@/components/ui/activity";
 import {
-  ArrowDownRight,
-  ArrowUpRight,
-  DollarSign,
-  Package,
-  ShoppingCart,
-  Users,
-  TrendingUp,
-  Activity,
-} from "lucide-react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Progress } from "@/components/ui/progress"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Progress } from "@/components/ui/progress";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
   type ChartConfig,
-} from "@/components/ui/chart"
+} from "@/components/ui/chart";
 import {
   Area,
   AreaChart,
@@ -28,7 +31,8 @@ import {
   LineChart,
   XAxis,
   YAxis,
-} from "recharts"
+} from "recharts";
+import { useTranslation } from "react-i18next";
 
 const revenueData = [
   { month: "Jan", revenue: 4000, orders: 240 },
@@ -43,7 +47,7 @@ const revenueData = [
   { month: "Oct", revenue: 7500, orders: 400 },
   { month: "Nov", revenue: 9000, orders: 450 },
   { month: "Dec", revenue: 8500, orders: 430 },
-]
+];
 
 const weeklyData = [
   { day: "Mon", visitors: 1200, pageViews: 3500 },
@@ -53,7 +57,7 @@ const weeklyData = [
   { day: "Fri", visitors: 1300, pageViews: 3900 },
   { day: "Sat", visitors: 900, pageViews: 2400 },
   { day: "Sun", visitors: 800, pageViews: 2100 },
-]
+];
 
 const categoryData = [
   { category: "Electronics", sales: 4500 },
@@ -62,91 +66,133 @@ const categoryData = [
   { category: "Sports", sales: 2100 },
   { category: "Books", sales: 1800 },
   { category: "Other", sales: 1200 },
-]
-
-const revenueConfig: ChartConfig = {
-  revenue: { label: "Revenue", color: "var(--chart-1)" },
-  orders: { label: "Orders", color: "var(--chart-2)" },
-}
-
-const weeklyConfig: ChartConfig = {
-  visitors: { label: "Visitors", color: "var(--chart-3)" },
-  pageViews: { label: "Page Views", color: "var(--chart-4)" },
-}
-
-const categoryConfig: ChartConfig = {
-  sales: { label: "Sales", color: "var(--chart-1)" },
-}
+];
 
 const recentOrders = [
-  { id: "#3210", customer: "Olivia Martin", status: "Shipped", amount: "$42.25" },
-  { id: "#3209", customer: "Ava Johnson", status: "Processing", amount: "$74.99" },
-  { id: "#3208", customer: "Michael Chen", status: "Delivered", amount: "$125.00" },
-  { id: "#3207", customer: "Lisa Anderson", status: "Pending", amount: "$89.50" },
-  { id: "#3206", customer: "James Wilson", status: "Shipped", amount: "$56.75" },
-]
+  {
+    id: "#3210",
+    customer: "Olivia Martin",
+    status: "Shipped",
+    amount: "$42.25",
+  },
+  {
+    id: "#3209",
+    customer: "Ava Johnson",
+    status: "Processing",
+    amount: "$74.99",
+  },
+  {
+    id: "#3208",
+    customer: "Michael Chen",
+    status: "Delivered",
+    amount: "$125.00",
+  },
+  {
+    id: "#3207",
+    customer: "Lisa Anderson",
+    status: "Pending",
+    amount: "$89.50",
+  },
+  {
+    id: "#3206",
+    customer: "James Wilson",
+    status: "Shipped",
+    amount: "$56.75",
+  },
+];
 
 const statusColor: Record<string, string> = {
   Shipped: "default",
   Processing: "secondary",
   Delivered: "outline",
   Pending: "destructive",
-}
+};
 
 export default function DashboardPage() {
+  const { t } = useTranslation("dashboard");
+
+  const revenueConfig: ChartConfig = {
+    revenue: { label: t("chartLabels.revenue"), color: "var(--chart-1)" },
+    orders: { label: t("chartLabels.ordersLabel"), color: "var(--chart-2)" },
+  };
+
+  const weeklyConfig: ChartConfig = {
+    visitors: {
+      label: t("chartLabels.visitorsLabel"),
+      color: "var(--chart-3)",
+    },
+    pageViews: { label: t("chartLabels.pageViews"), color: "var(--chart-4)" },
+  };
+
+  const categoryConfig: ChartConfig = {
+    sales: { label: t("chartLabels.sales"), color: "var(--chart-1)" },
+  };
+
   return (
     <div className="space-y-6">
       {/* Stats Cards */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium">Total Revenue</CardTitle>
-            <DollarSign className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-sm font-medium">
+              {t("stats.totalRevenue")}
+            </CardTitle>
+            <DollarSignIcon size={16} className="text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">$45,231.89</div>
             <div className="flex items-center gap-1 text-xs text-muted-foreground">
-              <ArrowUpRight className="h-3 w-3 text-green-500" />
-              <span className="text-green-500 font-medium">+20.1%</span> from last month
+              <ArrowUpRightIcon size={12} className="text-green-500" />
+              <span className="text-green-500 font-medium">+20.1%</span>{" "}
+              {t("stats.fromLastMonth")}
             </div>
           </CardContent>
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium">Orders</CardTitle>
+            <CardTitle className="text-sm font-medium">
+              {t("stats.orders")}
+            </CardTitle>
             <ShoppingCart className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">+2,350</div>
             <div className="flex items-center gap-1 text-xs text-muted-foreground">
-              <ArrowUpRight className="h-3 w-3 text-green-500" />
-              <span className="text-green-500 font-medium">+12.5%</span> from last month
+              <ArrowUpRightIcon size={12} className="text-green-500" />
+              <span className="text-green-500 font-medium">+12.5%</span>{" "}
+              {t("stats.fromLastMonth")}
             </div>
           </CardContent>
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium">Products</CardTitle>
+            <CardTitle className="text-sm font-medium">
+              {t("stats.products")}
+            </CardTitle>
             <Package className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">1,234</div>
             <div className="flex items-center gap-1 text-xs text-muted-foreground">
-              <ArrowDownRight className="h-3 w-3 text-red-500" />
-              <span className="text-red-500 font-medium">-2.1%</span> from last month
+              <ArrowDownRightIcon size={12} className="text-red-500" />
+              <span className="text-red-500 font-medium">-2.1%</span>{" "}
+              {t("stats.fromLastMonth")}
             </div>
           </CardContent>
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium">Active Users</CardTitle>
-            <Users className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-sm font-medium">
+              {t("stats.activeUsers")}
+            </CardTitle>
+            <UsersIcon size={16} className="text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">+573</div>
             <div className="flex items-center gap-1 text-xs text-muted-foreground">
-              <ArrowUpRight className="h-3 w-3 text-green-500" />
-              <span className="text-green-500 font-medium">+8.2%</span> from last month
+              <ArrowUpRightIcon size={12} className="text-green-500" />
+              <span className="text-green-500 font-medium">+8.2%</span>{" "}
+              {t("stats.fromLastMonth")}
             </div>
           </CardContent>
         </Card>
@@ -156,16 +202,16 @@ export default function DashboardPage() {
       <Tabs defaultValue="revenue" className="space-y-4">
         <TabsList>
           <TabsTrigger value="revenue">
-            <TrendingUp className="h-4 w-4 mr-2" />
-            Revenue
+            <TrendingUpIcon size={16} className="mr-2" />
+            {t("tabs.revenue")}
           </TabsTrigger>
           <TabsTrigger value="visitors">
-            <Activity className="h-4 w-4 mr-2" />
-            Visitors
+            <ActivityIcon size={16} className="mr-2" />
+            {t("tabs.visitors")}
           </TabsTrigger>
           <TabsTrigger value="categories">
             <Package className="h-4 w-4 mr-2" />
-            Categories
+            {t("tabs.categories")}
           </TabsTrigger>
         </TabsList>
 
@@ -173,8 +219,10 @@ export default function DashboardPage() {
           <div className="grid gap-4 md:grid-cols-2">
             <Card>
               <CardHeader>
-                <CardTitle>Revenue Overview</CardTitle>
-                <CardDescription>Monthly revenue for the current year</CardDescription>
+                <CardTitle>{t("charts.revenueOverview")}</CardTitle>
+                <CardDescription>
+                  {t("charts.revenueOverviewDesc")}
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 <ChartContainer config={revenueConfig} className="h-64 w-full">
@@ -196,8 +244,8 @@ export default function DashboardPage() {
             </Card>
             <Card>
               <CardHeader>
-                <CardTitle>Orders Trend</CardTitle>
-                <CardDescription>Monthly orders for the current year</CardDescription>
+                <CardTitle>{t("charts.ordersTrend")}</CardTitle>
+                <CardDescription>{t("charts.ordersTrendDesc")}</CardDescription>
               </CardHeader>
               <CardContent>
                 <ChartContainer config={revenueConfig} className="h-64 w-full">
@@ -223,8 +271,8 @@ export default function DashboardPage() {
         <TabsContent value="visitors" className="space-y-4">
           <Card>
             <CardHeader>
-              <CardTitle>Weekly Traffic</CardTitle>
-              <CardDescription>Visitors and page views this week</CardDescription>
+              <CardTitle>{t("charts.weeklyTraffic")}</CardTitle>
+              <CardDescription>{t("charts.weeklyTrafficDesc")}</CardDescription>
             </CardHeader>
             <CardContent>
               <ChartContainer config={weeklyConfig} className="h-72 w-full">
@@ -233,8 +281,16 @@ export default function DashboardPage() {
                   <XAxis dataKey="day" />
                   <YAxis />
                   <ChartTooltip content={<ChartTooltipContent />} />
-                  <Bar dataKey="visitors" fill="var(--color-visitors)" radius={[4, 4, 0, 0]} />
-                  <Bar dataKey="pageViews" fill="var(--color-pageViews)" radius={[4, 4, 0, 0]} />
+                  <Bar
+                    dataKey="visitors"
+                    fill="var(--color-visitors)"
+                    radius={[4, 4, 0, 0]}
+                  />
+                  <Bar
+                    dataKey="pageViews"
+                    fill="var(--color-pageViews)"
+                    radius={[4, 4, 0, 0]}
+                  />
                 </BarChart>
               </ChartContainer>
             </CardContent>
@@ -244,8 +300,10 @@ export default function DashboardPage() {
         <TabsContent value="categories" className="space-y-4">
           <Card>
             <CardHeader>
-              <CardTitle>Sales by Category</CardTitle>
-              <CardDescription>Product category performance</CardDescription>
+              <CardTitle>{t("charts.salesByCategory")}</CardTitle>
+              <CardDescription>
+                {t("charts.salesByCategoryDesc")}
+              </CardDescription>
             </CardHeader>
             <CardContent>
               <ChartContainer config={categoryConfig} className="h-72 w-full">
@@ -254,7 +312,11 @@ export default function DashboardPage() {
                   <XAxis type="number" />
                   <YAxis dataKey="category" type="category" width={80} />
                   <ChartTooltip content={<ChartTooltipContent />} />
-                  <Bar dataKey="sales" fill="var(--color-sales)" radius={[0, 4, 4, 0]} />
+                  <Bar
+                    dataKey="sales"
+                    fill="var(--color-sales)"
+                    radius={[0, 4, 4, 0]}
+                  />
                 </BarChart>
               </ChartContainer>
             </CardContent>
@@ -267,8 +329,8 @@ export default function DashboardPage() {
         {/* Recent Orders */}
         <Card className="md:col-span-4">
           <CardHeader>
-            <CardTitle>Recent Orders</CardTitle>
-            <CardDescription>Latest 5 orders from the store</CardDescription>
+            <CardTitle>{t("recentOrders.title")}</CardTitle>
+            <CardDescription>{t("recentOrders.description")}</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
@@ -283,11 +345,21 @@ export default function DashboardPage() {
                     </div>
                     <div>
                       <p className="text-sm font-medium">{order.customer}</p>
-                      <p className="text-xs text-muted-foreground">{order.id}</p>
+                      <p className="text-xs text-muted-foreground">
+                        {order.id}
+                      </p>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
-                    <Badge variant={statusColor[order.status] as "default" | "secondary" | "outline" | "destructive"}>
+                    <Badge
+                      variant={
+                        statusColor[order.status] as
+                          | "default"
+                          | "secondary"
+                          | "outline"
+                          | "destructive"
+                      }
+                    >
                       {order.status}
                     </Badge>
                     <span className="text-sm font-medium">{order.amount}</span>
@@ -301,41 +373,41 @@ export default function DashboardPage() {
         {/* Server Stats */}
         <Card className="md:col-span-3">
           <CardHeader>
-            <CardTitle>System Overview</CardTitle>
-            <CardDescription>Server resource utilization</CardDescription>
+            <CardTitle>{t("systemOverview.title")}</CardTitle>
+            <CardDescription>{t("systemOverview.description")}</CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
             <div className="space-y-2">
               <div className="flex items-center justify-between text-sm">
-                <span>CPU Usage</span>
+                <span>{t("systemOverview.cpuUsage")}</span>
                 <span className="font-medium">72%</span>
               </div>
               <Progress value={72} />
             </div>
             <div className="space-y-2">
               <div className="flex items-center justify-between text-sm">
-                <span>Memory</span>
+                <span>{t("systemOverview.memory")}</span>
                 <span className="font-medium">58%</span>
               </div>
               <Progress value={58} />
             </div>
             <div className="space-y-2">
               <div className="flex items-center justify-between text-sm">
-                <span>Storage</span>
+                <span>{t("systemOverview.storage")}</span>
                 <span className="font-medium">45%</span>
               </div>
               <Progress value={45} />
             </div>
             <div className="space-y-2">
               <div className="flex items-center justify-between text-sm">
-                <span>Bandwidth</span>
+                <span>{t("systemOverview.bandwidth")}</span>
                 <span className="font-medium">89%</span>
               </div>
               <Progress value={89} />
             </div>
             <div className="space-y-2">
               <div className="flex items-center justify-between text-sm">
-                <span>Network I/O</span>
+                <span>{t("systemOverview.networkIO")}</span>
                 <span className="font-medium">34%</span>
               </div>
               <Progress value={34} />
@@ -344,5 +416,5 @@ export default function DashboardPage() {
         </Card>
       </div>
     </div>
-  )
+  );
 }

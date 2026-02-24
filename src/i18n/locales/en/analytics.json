@@ -1,0 +1,23 @@
+{
+  "title": "Analytics",
+  "description": "Detailed analytics and metrics overview",
+  "stats": {
+    "totalVisitors": "Total Visitors",
+    "bounceRate": "Bounce Rate",
+    "avgSession": "Avg. Session",
+    "conversionRate": "Conversion Rate",
+    "vsLastPeriod": "vs last period"
+  },
+  "charts": {
+    "trafficByDevice": "Traffic by Device",
+    "trafficByDeviceDesc": "Desktop vs Mobile visitors this week",
+    "conversionFunnel": "Conversion Funnel",
+    "conversionFunnelDesc": "Visitors to conversions ratio"
+  },
+  "chartLabels": {
+    "desktop": "Desktop",
+    "mobile": "Mobile",
+    "visitors": "Visitors",
+    "conversions": "Conversions"
+  }
+}

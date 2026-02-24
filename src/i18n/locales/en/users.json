@@ -1,0 +1,29 @@
+{
+  "title": "Users",
+  "description": "Manage your users and their roles",
+  "addUser": "Add User",
+  "searchPlaceholder": "Search users...",
+  "columns": {
+    "name": "Name",
+    "email": "Email",
+    "role": "Role",
+    "status": "Status",
+    "created": "Created"
+  },
+  "actions": {
+    "copyUserId": "Copy user ID",
+    "viewDetails": "View details",
+    "editUser": "Edit user",
+    "deleteUser": "Delete user"
+  },
+  "filters": {
+    "role": "Role",
+    "status": "Status",
+    "admin": "Admin",
+    "editor": "Editor",
+    "viewer": "Viewer",
+    "active": "Active",
+    "inactive": "Inactive",
+    "banned": "Banned"
+  }
+}

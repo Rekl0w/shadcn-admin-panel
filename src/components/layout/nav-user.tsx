@@ -1,17 +1,10 @@
-import {
-  BadgeCheck,
-  Bell,
-  ChevronsUpDown,
-  CreditCard,
-  LogOut,
-  Sparkles,
-} from "lucide-react"
-import { useNavigate } from "react-router"
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@/components/ui/avatar"
+import { BadgeCheck, CreditCard, LogOut } from "lucide-react";
+import { BellIcon } from "@/components/ui/bell";
+import { ChevronsUpDownIcon } from "@/components/ui/chevrons-up-down";
+import { SparklesIcon } from "@/components/ui/sparkles";
+import { useNavigate } from "react-router";
+import { useTranslation } from "react-i18next";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -20,37 +13,38 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu";
 import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
-} from "@/components/ui/sidebar"
-import { useAuthStore } from "@/store/auth-store"
+} from "@/components/ui/sidebar";
+import { useAuthStore } from "@/store/auth-store";
 
 export function NavUser() {
-  const { isMobile } = useSidebar()
-  const { user, logout } = useAuthStore()
-  const navigate = useNavigate()
+  const { isMobile } = useSidebar();
+  const { user, logout } = useAuthStore();
+  const navigate = useNavigate();
+  const { t } = useTranslation("sidebar");
 
   const displayUser = user || {
     name: "Admin User",
     email: "admin@example.com",
     avatar: "",
-  }
+  };
 
   const initials = displayUser.name
     .split(" ")
     .map((n) => n[0])
     .join("")
     .toUpperCase()
-    .slice(0, 2)
+    .slice(0, 2);
 
   const handleLogout = () => {
-    logout()
-    navigate("/login")
-  }
+    logout();
+    navigate("/login");
+  };
 
   return (
     <SidebarMenu>
@@ -72,7 +66,7 @@ export function NavUser() {
               <span className="truncate font-medium">{displayUser.name}</span>
               <span className="truncate text-xs">{displayUser.email}</span>
             </div>
-            <ChevronsUpDown className="ml-auto size-4" />
+            <ChevronsUpDownIcon size={16} className="ml-auto" />
           </DropdownMenuTrigger>
           <DropdownMenuContent
             className="w-56 rounded-lg"
@@ -102,33 +96,33 @@ export function NavUser() {
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem>
-                <Sparkles />
-                Upgrade to Pro
+                <SparklesIcon size={16} />
+                {t("user.upgradeToPro")}
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem>
                 <BadgeCheck />
-                Account
+                {t("user.account")}
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <CreditCard />
-                Billing
+                {t("user.billingMenu")}
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <Bell />
-                Notifications
+                <BellIcon size={16} />
+                {t("user.notifications")}
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={handleLogout}>
               <LogOut />
-              Log out
+              {t("user.logOut")}
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </SidebarMenuItem>
     </SidebarMenu>
-  )
+  );
 }

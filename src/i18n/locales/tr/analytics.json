@@ -1,0 +1,23 @@
+{
+  "title": "Analitik",
+  "description": "Detaylı analitik ve metrik genel bakışı",
+  "stats": {
+    "totalVisitors": "Toplam Ziyaretçi",
+    "bounceRate": "Hemen Çıkma Oranı",
+    "avgSession": "Ort. Oturum",
+    "conversionRate": "Dönüşüm Oranı",
+    "vsLastPeriod": "önceki döneme göre"
+  },
+  "charts": {
+    "trafficByDevice": "Cihaza Göre Trafik",
+    "trafficByDeviceDesc": "Bu hafta Masaüstü ve Mobil ziyaretçiler",
+    "conversionFunnel": "Dönüşüm Hunisi",
+    "conversionFunnelDesc": "Ziyaretçi-dönüşüm oranı"
+  },
+  "chartLabels": {
+    "desktop": "Masaüstü",
+    "mobile": "Mobil",
+    "visitors": "Ziyaretçiler",
+    "conversions": "Dönüşümler"
+  }
+}

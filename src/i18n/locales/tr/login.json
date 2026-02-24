@@ -1,0 +1,11 @@
+{
+  "title": "Tekrar Hoş Geldiniz",
+  "description": "Yönetici hesabınıza giriş yapın",
+  "email": "E-posta",
+  "emailPlaceholder": "admin@example.com",
+  "password": "Şifre",
+  "passwordPlaceholder": "Şifrenizi girin",
+  "submit": "Giriş Yap",
+  "loading": "Giriş yapılıyor...",
+  "demo": "Demo: herhangi bir e-posta/şifre çalışacaktır"
+}

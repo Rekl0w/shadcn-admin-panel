@@ -1,4 +1,4 @@
-"use no memo"
+"use no memo";
 
 import {
   type ColumnDef,
@@ -13,8 +13,8 @@ import {
   getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
-} from "@tanstack/react-table"
-import * as React from "react"
+} from "@tanstack/react-table";
+import * as React from "react";
 import {
   Table,
   TableBody,
@@ -22,20 +22,25 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table"
-import { DataTablePagination } from "@/components/data-table/data-table-pagination"
-import { DataTableToolbar } from "@/components/data-table/data-table-toolbar"
+} from "@/components/ui/table";
+import { DataTablePagination } from "@/components/data-table/data-table-pagination";
+import { DataTableToolbar } from "@/components/data-table/data-table-toolbar";
+import { useTranslation } from "react-i18next";
 
 interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[]
-  data: TData[]
-  searchKey?: string
-  searchPlaceholder?: string
+  columns: ColumnDef<TData, TValue>[];
+  data: TData[];
+  searchKey?: string;
+  searchPlaceholder?: string;
   filterableColumns?: {
-    id: string
-    title: string
-    options: { label: string; value: string; icon?: React.ComponentType<{ className?: string }> }[]
-  }[]
+    id: string;
+    title: string;
+    options: {
+      label: string;
+      value: string;
+      icon?: React.ComponentType<{ className?: string }>;
+    }[];
+  }[];
 }
 
 export function DataTable<TData, TValue>({
@@ -45,10 +50,14 @@ export function DataTable<TData, TValue>({
   searchPlaceholder = "Filter...",
   filterableColumns = [],
 }: DataTableProps<TData, TValue>) {
-  const [rowSelection, setRowSelection] = React.useState({})
-  const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({})
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([])
-  const [sorting, setSorting] = React.useState<SortingState>([])
+  const { t } = useTranslation("common");
+  const [rowSelection, setRowSelection] = React.useState({});
+  const [columnVisibility, setColumnVisibility] =
+    React.useState<VisibilityState>({});
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
+    [],
+  );
+  const [sorting, setSorting] = React.useState<SortingState>([]);
 
   const table = useReactTable({
     data,
@@ -70,7 +79,7 @@ export function DataTable<TData, TValue>({
     getSortedRowModel: getSortedRowModel(),
     getFacetedRowModel: getFacetedRowModel(),
     getFacetedUniqueValues: getFacetedUniqueValues(),
-  })
+  });
 
   return (
     <div className="space-y-4">
@@ -91,7 +100,7 @@ export function DataTable<TData, TValue>({
                       ? null
                       : flexRender(
                           header.column.columnDef.header,
-                          header.getContext()
+                          header.getContext(),
                         )}
                   </TableHead>
                 ))}
@@ -109,7 +118,7 @@ export function DataTable<TData, TValue>({
                     <TableCell key={cell.id}>
                       {flexRender(
                         cell.column.columnDef.cell,
-                        cell.getContext()
+                        cell.getContext(),
                       )}
                     </TableCell>
                   ))}
@@ -121,7 +130,7 @@ export function DataTable<TData, TValue>({
                   colSpan={columns.length}
                   className="h-24 text-center"
                 >
-                  No results.
+                  {t("table.noResults")}
                 </TableCell>
               </TableRow>
             )}
@@ -130,5 +139,5 @@ export function DataTable<TData, TValue>({
       </div>
       <DataTablePagination table={table} />
     </div>
-  )
+  );
 }
