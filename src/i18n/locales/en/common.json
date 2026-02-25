@@ -68,5 +68,36 @@
     "fri": "Fri",
     "sat": "Sat",
     "sun": "Sun"
+  },
+  "themeCustomizer": {
+    "title": "Customize Theme",
+    "description": "Pick a color theme and adjust the border radius for your admin panel.",
+    "colorTheme": "Color Theme",
+    "borderRadius": "Border Radius",
+    "square": "Square",
+    "round": "Round",
+    "preview": "Preview",
+    "primary": "Primary",
+    "secondary": "Secondary",
+    "outline": "Outline",
+    "destructive": "Destructive",
+    "ghost": "Ghost",
+    "link": "Link",
+    "cardPreview": "Card Preview",
+    "cardPreviewDesc": "This is how cards will look.",
+    "resetToDefault": "Reset to Default",
+    "customizeTheme": "Customize theme",
+    "colors": {
+      "sky": "Sky",
+      "blue": "Blue",
+      "green": "Green",
+      "rose": "Rose",
+      "orange": "Orange",
+      "purple": "Purple",
+      "emerald": "Emerald",
+      "violet": "Violet",
+      "amber": "Amber",
+      "red": "Red"
+    }
   }
 }

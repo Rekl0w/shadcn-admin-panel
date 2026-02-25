@@ -68,5 +68,36 @@
     "fri": "Cum",
     "sat": "Cmt",
     "sun": "Paz"
+  },
+  "themeCustomizer": {
+    "title": "Temayı Özelleştir",
+    "description": "Yönetici paneliniz için bir renk teması seçin ve kenar yuvarlaklığını ayarlayın.",
+    "colorTheme": "Renk Teması",
+    "borderRadius": "Kenar Yuvarlaklığı",
+    "square": "Köşeli",
+    "round": "Yuvarlak",
+    "preview": "Önizleme",
+    "primary": "Birincil",
+    "secondary": "İkincil",
+    "outline": "Çerçeve",
+    "destructive": "Uyarı",
+    "ghost": "Hayalet",
+    "link": "Bağlantı",
+    "cardPreview": "Kart Önizlemesi",
+    "cardPreviewDesc": "Kartlar böyle görünecek.",
+    "resetToDefault": "Varsayılana Sıfırla",
+    "customizeTheme": "Temayı özelleştir",
+    "colors": {
+      "sky": "Gök Mavisi",
+      "blue": "Mavi",
+      "green": "Yeşil",
+      "rose": "Gül",
+      "orange": "Turuncu",
+      "purple": "Mor",
+      "emerald": "Zümrüt",
+      "violet": "Menekşe",
+      "amber": "Kehribar",
+      "red": "Kırmızı"
+    }
   }
 }
