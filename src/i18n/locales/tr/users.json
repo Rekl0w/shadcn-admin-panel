@@ -25,5 +25,15 @@
     "active": "Aktif",
     "inactive": "Pasif",
     "banned": "Yasaklı"
+  },
+  "roles": {
+    "admin": "Yönetici",
+    "editor": "Editör",
+    "viewer": "İzleyici"
+  },
+  "statuses": {
+    "active": "Aktif",
+    "inactive": "Pasif",
+    "banned": "Yasaklı"
   }
 }

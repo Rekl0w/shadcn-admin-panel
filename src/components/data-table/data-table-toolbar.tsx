@@ -10,6 +10,7 @@ interface DataTableToolbarProps<TData> {
   table: Table<TData>;
   searchKey?: string;
   searchPlaceholder?: string;
+  columnLabels?: Record<string, string>;
   filterableColumns?: {
     id: string;
     title: string;
@@ -25,6 +26,7 @@ export function DataTableToolbar<TData>({
   table,
   searchKey,
   searchPlaceholder = "Filter...",
+  columnLabels,
   filterableColumns = [],
 }: DataTableToolbarProps<TData>) {
   const { t } = useTranslation("common");
@@ -67,7 +69,7 @@ export function DataTableToolbar<TData>({
           </Button>
         )}
       </div>
-      <DataTableViewOptions table={table} />
+      <DataTableViewOptions table={table} columnLabels={columnLabels} />
     </div>
   );
 }

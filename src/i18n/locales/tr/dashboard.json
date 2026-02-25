@@ -40,5 +40,19 @@
     "visitorsLabel": "Ziyaretçiler",
     "pageViews": "Sayfa Görüntülemeleri",
     "sales": "Satışlar"
+  },
+  "categories": {
+    "electronics": "Elektronik",
+    "clothing": "Giyim",
+    "home": "Ev",
+    "sports": "Spor",
+    "books": "Kitaplar",
+    "other": "Diğer"
+  },
+  "orderStatuses": {
+    "shipped": "Kargoda",
+    "processing": "İşleniyor",
+    "delivered": "Teslim Edildi",
+    "pending": "Beklemede"
   }
 }

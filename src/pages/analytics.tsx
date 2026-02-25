@@ -21,28 +21,48 @@ import {
   YAxis,
 } from "recharts";
 import { useTranslation } from "react-i18next";
+import { useMemo } from "react";
 
-const trafficData = [
-  { date: "Mon", desktop: 186, mobile: 80 },
-  { date: "Tue", desktop: 305, mobile: 200 },
-  { date: "Wed", desktop: 237, mobile: 120 },
-  { date: "Thu", desktop: 73, mobile: 190 },
-  { date: "Fri", desktop: 209, mobile: 130 },
-  { date: "Sat", desktop: 214, mobile: 140 },
-  { date: "Sun", desktop: 150, mobile: 100 },
+const RAW_TRAFFIC_DATA = [
+  { date: "mon", desktop: 186, mobile: 80 },
+  { date: "tue", desktop: 305, mobile: 200 },
+  { date: "wed", desktop: 237, mobile: 120 },
+  { date: "thu", desktop: 73, mobile: 190 },
+  { date: "fri", desktop: 209, mobile: 130 },
+  { date: "sat", desktop: 214, mobile: 140 },
+  { date: "sun", desktop: 150, mobile: 100 },
 ];
 
-const conversionData = [
-  { month: "Jan", visitors: 4000, conversions: 240 },
-  { month: "Feb", visitors: 3000, conversions: 180 },
-  { month: "Mar", visitors: 5000, conversions: 350 },
-  { month: "Apr", visitors: 4500, conversions: 290 },
-  { month: "May", visitors: 6000, conversions: 420 },
-  { month: "Jun", visitors: 5500, conversions: 380 },
+const RAW_CONVERSION_DATA = [
+  { month: "jan", visitors: 4000, conversions: 240 },
+  { month: "feb", visitors: 3000, conversions: 180 },
+  { month: "mar", visitors: 5000, conversions: 350 },
+  { month: "apr", visitors: 4500, conversions: 290 },
+  { month: "may", visitors: 6000, conversions: 420 },
+  { month: "jun", visitors: 5500, conversions: 380 },
 ];
 
 export default function AnalyticsPage() {
   const { t } = useTranslation("analytics");
+  const { t: tc } = useTranslation("common");
+
+  const trafficData = useMemo(
+    () =>
+      RAW_TRAFFIC_DATA.map((d) => ({
+        ...d,
+        date: tc(`days.${d.date}`),
+      })),
+    [tc],
+  );
+
+  const conversionData = useMemo(
+    () =>
+      RAW_CONVERSION_DATA.map((d) => ({
+        ...d,
+        month: tc(`months.${d.month}`),
+      })),
+    [tc],
+  );
 
   const trafficConfig: ChartConfig = {
     desktop: { label: t("chartLabels.desktop"), color: "var(--chart-1)" },

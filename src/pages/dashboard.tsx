@@ -1,10 +1,11 @@
-import { Package, ShoppingCart } from "lucide-react";
 import { ArrowDownRightIcon } from "@/components/ui/arrow-down-right";
 import { ArrowUpRightIcon } from "@/components/ui/arrow-up-right";
 import { DollarSignIcon } from "@/components/ui/dollar-sign";
 import { UsersIcon } from "@/components/ui/users";
 import { TrendingUpIcon } from "@/components/ui/trending-up";
 import { ActivityIcon } from "@/components/ui/activity";
+import { PackageIcon } from "@/components/ui/package";
+import { ShoppingCartIcon } from "@/components/ui/shopping-cart";
 import {
   Card,
   CardContent,
@@ -33,83 +34,112 @@ import {
   YAxis,
 } from "recharts";
 import { useTranslation } from "react-i18next";
+import { useMemo } from "react";
 
-const revenueData = [
-  { month: "Jan", revenue: 4000, orders: 240 },
-  { month: "Feb", revenue: 3000, orders: 210 },
-  { month: "Mar", revenue: 5000, orders: 290 },
-  { month: "Apr", revenue: 4500, orders: 260 },
-  { month: "May", revenue: 6000, orders: 340 },
-  { month: "Jun", revenue: 5500, orders: 310 },
-  { month: "Jul", revenue: 7000, orders: 380 },
-  { month: "Aug", revenue: 6500, orders: 350 },
-  { month: "Sep", revenue: 8000, orders: 420 },
-  { month: "Oct", revenue: 7500, orders: 400 },
-  { month: "Nov", revenue: 9000, orders: 450 },
-  { month: "Dec", revenue: 8500, orders: 430 },
+const RAW_REVENUE_DATA = [
+  { month: "jan", revenue: 4000, orders: 240 },
+  { month: "feb", revenue: 3000, orders: 210 },
+  { month: "mar", revenue: 5000, orders: 290 },
+  { month: "apr", revenue: 4500, orders: 260 },
+  { month: "may", revenue: 6000, orders: 340 },
+  { month: "jun", revenue: 5500, orders: 310 },
+  { month: "jul", revenue: 7000, orders: 380 },
+  { month: "aug", revenue: 6500, orders: 350 },
+  { month: "sep", revenue: 8000, orders: 420 },
+  { month: "oct", revenue: 7500, orders: 400 },
+  { month: "nov", revenue: 9000, orders: 450 },
+  { month: "dec", revenue: 8500, orders: 430 },
 ];
 
-const weeklyData = [
-  { day: "Mon", visitors: 1200, pageViews: 3500 },
-  { day: "Tue", visitors: 1400, pageViews: 4200 },
-  { day: "Wed", visitors: 1100, pageViews: 3100 },
-  { day: "Thu", visitors: 1600, pageViews: 4800 },
-  { day: "Fri", visitors: 1300, pageViews: 3900 },
-  { day: "Sat", visitors: 900, pageViews: 2400 },
-  { day: "Sun", visitors: 800, pageViews: 2100 },
+const RAW_WEEKLY_DATA = [
+  { day: "mon", visitors: 1200, pageViews: 3500 },
+  { day: "tue", visitors: 1400, pageViews: 4200 },
+  { day: "wed", visitors: 1100, pageViews: 3100 },
+  { day: "thu", visitors: 1600, pageViews: 4800 },
+  { day: "fri", visitors: 1300, pageViews: 3900 },
+  { day: "sat", visitors: 900, pageViews: 2400 },
+  { day: "sun", visitors: 800, pageViews: 2100 },
 ];
 
-const categoryData = [
-  { category: "Electronics", sales: 4500 },
-  { category: "Clothing", sales: 3200 },
-  { category: "Home", sales: 2800 },
-  { category: "Sports", sales: 2100 },
-  { category: "Books", sales: 1800 },
-  { category: "Other", sales: 1200 },
+const RAW_CATEGORY_DATA = [
+  { category: "electronics", sales: 4500 },
+  { category: "clothing", sales: 3200 },
+  { category: "home", sales: 2800 },
+  { category: "sports", sales: 2100 },
+  { category: "books", sales: 1800 },
+  { category: "other", sales: 1200 },
 ];
 
 const recentOrders = [
   {
     id: "#3210",
     customer: "Olivia Martin",
-    status: "Shipped",
+    status: "shipped",
     amount: "$42.25",
   },
   {
     id: "#3209",
     customer: "Ava Johnson",
-    status: "Processing",
+    status: "processing",
     amount: "$74.99",
   },
   {
     id: "#3208",
     customer: "Michael Chen",
-    status: "Delivered",
+    status: "delivered",
     amount: "$125.00",
   },
   {
     id: "#3207",
     customer: "Lisa Anderson",
-    status: "Pending",
+    status: "pending",
     amount: "$89.50",
   },
   {
     id: "#3206",
     customer: "James Wilson",
-    status: "Shipped",
+    status: "shipped",
     amount: "$56.75",
   },
 ];
 
 const statusColor: Record<string, string> = {
-  Shipped: "default",
-  Processing: "secondary",
-  Delivered: "outline",
-  Pending: "destructive",
+  shipped: "default",
+  processing: "secondary",
+  delivered: "outline",
+  pending: "destructive",
 };
 
 export default function DashboardPage() {
   const { t } = useTranslation("dashboard");
+  const { t: tc } = useTranslation("common");
+
+  const revenueData = useMemo(
+    () =>
+      RAW_REVENUE_DATA.map((d) => ({
+        ...d,
+        month: tc(`months.${d.month}`),
+      })),
+    [tc],
+  );
+
+  const weeklyData = useMemo(
+    () =>
+      RAW_WEEKLY_DATA.map((d) => ({
+        ...d,
+        day: tc(`days.${d.day}`),
+      })),
+    [tc],
+  );
+
+  const categoryData = useMemo(
+    () =>
+      RAW_CATEGORY_DATA.map((d) => ({
+        ...d,
+        category: t(`categories.${d.category}`),
+      })),
+    [t],
+  );
 
   const revenueConfig: ChartConfig = {
     revenue: { label: t("chartLabels.revenue"), color: "var(--chart-1)" },
@@ -153,7 +183,7 @@ export default function DashboardPage() {
             <CardTitle className="text-sm font-medium">
               {t("stats.orders")}
             </CardTitle>
-            <ShoppingCart className="h-4 w-4 text-muted-foreground" />
+            <ShoppingCartIcon size={16} className="text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">+2,350</div>
@@ -169,7 +199,7 @@ export default function DashboardPage() {
             <CardTitle className="text-sm font-medium">
               {t("stats.products")}
             </CardTitle>
-            <Package className="h-4 w-4 text-muted-foreground" />
+            <PackageIcon size={16} className="text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">1,234</div>
@@ -210,7 +240,7 @@ export default function DashboardPage() {
             {t("tabs.visitors")}
           </TabsTrigger>
           <TabsTrigger value="categories">
-            <Package className="h-4 w-4 mr-2" />
+            <PackageIcon size={16} className="mr-2" />
             {t("tabs.categories")}
           </TabsTrigger>
         </TabsList>
@@ -341,7 +371,7 @@ export default function DashboardPage() {
                 >
                   <div className="flex items-center gap-3">
                     <div className="flex h-9 w-9 items-center justify-center rounded-full bg-primary/10">
-                      <ShoppingCart className="h-4 w-4 text-primary" />
+                      <ShoppingCartIcon size={16} className="text-primary" />
                     </div>
                     <div>
                       <p className="text-sm font-medium">{order.customer}</p>
@@ -360,7 +390,7 @@ export default function DashboardPage() {
                           | "destructive"
                       }
                     >
-                      {order.status}
+                      {t(`orderStatuses.${order.status}`)}
                     </Badge>
                     <span className="text-sm font-medium">{order.amount}</span>
                   </div>

@@ -109,6 +109,17 @@ export default function UsersPage() {
   const { t } = useTranslation("users");
   const columns = useMemo(() => getUserColumns(t), [t]);
 
+  const columnLabels = useMemo(
+    () => ({
+      name: t("columns.name"),
+      email: t("columns.email"),
+      role: t("columns.role"),
+      status: t("columns.status"),
+      createdAt: t("columns.created"),
+    }),
+    [t],
+  );
+
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
@@ -128,6 +139,7 @@ export default function UsersPage() {
         data={sampleUsers}
         searchKey="name"
         searchPlaceholder={t("searchPlaceholder")}
+        columnLabels={columnLabels}
         filterableColumns={[
           {
             id: "role",

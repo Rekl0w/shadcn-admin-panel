@@ -111,7 +111,7 @@ export function getOrderColumns(t: TFunction): ColumnDef<Order>[] {
         const status = row.getValue("status") as string;
         return (
           <Badge variant={statusColors[status]} className="capitalize">
-            {status}
+            {t(`statuses.${status}`)}
           </Badge>
         );
       },

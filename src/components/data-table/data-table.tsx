@@ -32,6 +32,7 @@ interface DataTableProps<TData, TValue> {
   data: TData[];
   searchKey?: string;
   searchPlaceholder?: string;
+  columnLabels?: Record<string, string>;
   filterableColumns?: {
     id: string;
     title: string;
@@ -48,6 +49,7 @@ export function DataTable<TData, TValue>({
   data,
   searchKey,
   searchPlaceholder = "Filter...",
+  columnLabels,
   filterableColumns = [],
 }: DataTableProps<TData, TValue>) {
   const { t } = useTranslation("common");
@@ -87,6 +89,7 @@ export function DataTable<TData, TValue>({
         table={table}
         searchKey={searchKey}
         searchPlaceholder={searchPlaceholder}
+        columnLabels={columnLabels}
         filterableColumns={filterableColumns}
       />
       <div className="rounded-md border">

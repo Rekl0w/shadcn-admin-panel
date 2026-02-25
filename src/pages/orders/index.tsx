@@ -100,6 +100,18 @@ export default function OrdersPage() {
   const { t } = useTranslation("orders");
   const columns = useMemo(() => getOrderColumns(t), [t]);
 
+  const columnLabels = useMemo(
+    () => ({
+      id: t("columns.orderId"),
+      customer: t("columns.customer"),
+      items: t("columns.items"),
+      total: t("columns.total"),
+      status: t("columns.status"),
+      createdAt: t("columns.date"),
+    }),
+    [t],
+  );
+
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
@@ -113,6 +125,7 @@ export default function OrdersPage() {
         data={sampleOrders}
         searchKey="customer"
         searchPlaceholder={t("searchPlaceholder")}
+        columnLabels={columnLabels}
         filterableColumns={[
           {
             id: "status",

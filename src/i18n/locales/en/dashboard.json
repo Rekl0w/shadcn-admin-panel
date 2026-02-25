@@ -40,5 +40,19 @@
     "visitorsLabel": "Visitors",
     "pageViews": "Page Views",
     "sales": "Sales"
+  },
+  "categories": {
+    "electronics": "Electronics",
+    "clothing": "Clothing",
+    "home": "Home",
+    "sports": "Sports",
+    "books": "Books",
+    "other": "Other"
+  },
+  "orderStatuses": {
+    "shipped": "Shipped",
+    "processing": "Processing",
+    "delivered": "Delivered",
+    "pending": "Pending"
   }
 }

@@ -102,7 +102,7 @@ export function getProductColumns(t: TFunction): ColumnDef<Product>[] {
         const status = row.getValue("status") as string;
         return (
           <Badge variant={statusColors[status]} className="capitalize">
-            {status.replace("-", " ")}
+            {t(`statuses.${status}`)}
           </Badge>
         );
       },

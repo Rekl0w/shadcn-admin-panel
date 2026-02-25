@@ -106,7 +106,7 @@ export function getUserColumns(t: TFunction): ColumnDef<User>[] {
         const role = row.getValue("role") as string;
         return (
           <Badge variant={roleColors[role]} className="capitalize">
-            {role}
+            {t(`roles.${role}`)}
           </Badge>
         );
       },
@@ -121,7 +121,7 @@ export function getUserColumns(t: TFunction): ColumnDef<User>[] {
         const status = row.getValue("status") as string;
         return (
           <Badge variant={statusColors[status]} className="capitalize">
-            {status}
+            {t(`statuses.${status}`)}
           </Badge>
         );
       },

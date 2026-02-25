@@ -26,5 +26,10 @@
     "inStock": "In Stock",
     "lowStock": "Low Stock",
     "outOfStock": "Out of Stock"
+  },
+  "statuses": {
+    "in-stock": "In Stock",
+    "low-stock": "Low Stock",
+    "out-of-stock": "Out of Stock"
   }
 }

@@ -26,5 +26,10 @@
     "inStock": "Stokta",
     "lowStock": "Düşük Stok",
     "outOfStock": "Stokta Yok"
+  },
+  "statuses": {
+    "in-stock": "Stokta",
+    "low-stock": "Düşük Stok",
+    "out-of-stock": "Stokta Yok"
   }
 }

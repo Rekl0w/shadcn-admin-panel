@@ -1,18 +1,4 @@
-import {
-  AudioWaveform,
-  BookOpen,
-  Bot,
-  Command,
-  Frame,
-  GalleryVerticalEnd,
-  LayoutDashboard,
-  Map,
-  Package,
-  PieChart,
-  Settings2,
-  ShoppingCart,
-  Users,
-} from "lucide-react";
+import { AudioWaveform, Command, GalleryVerticalEnd } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { NavMain, type NavMainItem } from "@/components/layout/nav-main";
 import {
@@ -21,6 +7,15 @@ import {
 } from "@/components/layout/nav-projects";
 import { NavUser } from "@/components/layout/nav-user";
 import { TeamSwitcher, type Team } from "@/components/layout/team-switcher";
+import { BookOpenIcon } from "@/components/ui/book-open";
+import { BotIcon } from "@/components/ui/bot";
+import { FrameIcon } from "@/components/ui/frame";
+import { LayoutDashboardIcon } from "@/components/ui/layout-dashboard";
+import { MapIcon } from "@/components/ui/map";
+import { PackageIcon } from "@/components/ui/package";
+import { PieChartIcon } from "@/components/ui/pie-chart";
+import { SettingsIcon } from "@/components/ui/settings";
+import { ShoppingCartIcon } from "@/components/ui/shopping-cart";
 import {
   Sidebar,
   SidebarContent,
@@ -28,6 +23,7 @@ import {
   SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar";
+import { UsersIcon } from "@/components/ui/users";
 
 export function AppSidebar(props: React.ComponentProps<typeof Sidebar>) {
   const { t } = useTranslation("sidebar");
@@ -54,7 +50,7 @@ export function AppSidebar(props: React.ComponentProps<typeof Sidebar>) {
     {
       title: t("nav.dashboard"),
       url: "/",
-      icon: LayoutDashboard,
+      icon: LayoutDashboardIcon,
       isActive: true,
       items: [
         { title: t("nav.overview"), url: "/" },
@@ -64,7 +60,7 @@ export function AppSidebar(props: React.ComponentProps<typeof Sidebar>) {
     {
       title: t("nav.users"),
       url: "/users",
-      icon: Users,
+      icon: UsersIcon,
       items: [
         { title: t("nav.allUsers"), url: "/users" },
         { title: t("nav.roles"), url: "/users/roles" },
@@ -73,7 +69,7 @@ export function AppSidebar(props: React.ComponentProps<typeof Sidebar>) {
     {
       title: t("nav.products"),
       url: "/products",
-      icon: Package,
+      icon: PackageIcon,
       items: [
         { title: t("nav.allProducts"), url: "/products" },
         { title: t("nav.categories"), url: "/products/categories" },
@@ -82,7 +78,7 @@ export function AppSidebar(props: React.ComponentProps<typeof Sidebar>) {
     {
       title: t("nav.orders"),
       url: "/orders",
-      icon: ShoppingCart,
+      icon: ShoppingCartIcon,
       items: [
         { title: t("nav.allOrders"), url: "/orders" },
         { title: t("nav.returns"), url: "/orders/returns" },
@@ -91,7 +87,7 @@ export function AppSidebar(props: React.ComponentProps<typeof Sidebar>) {
     {
       title: t("nav.documentation"),
       url: "/docs",
-      icon: BookOpen,
+      icon: BookOpenIcon,
       items: [
         { title: t("nav.introduction"), url: "/docs" },
         { title: t("nav.apiReference"), url: "/docs/api" },
@@ -100,7 +96,7 @@ export function AppSidebar(props: React.ComponentProps<typeof Sidebar>) {
     {
       title: t("nav.aiModels"),
       url: "/models",
-      icon: Bot,
+      icon: BotIcon,
       items: [
         { title: t("nav.explorer"), url: "/models" },
         { title: t("nav.training"), url: "/models/training" },
@@ -109,7 +105,7 @@ export function AppSidebar(props: React.ComponentProps<typeof Sidebar>) {
     {
       title: t("nav.settings"),
       url: "/settings",
-      icon: Settings2,
+      icon: SettingsIcon,
       items: [
         { title: t("nav.general"), url: "/settings" },
         { title: t("nav.appearance"), url: "/settings/appearance" },
@@ -123,17 +119,17 @@ export function AppSidebar(props: React.ComponentProps<typeof Sidebar>) {
     {
       name: t("quickLinks.designSystem"),
       url: "/",
-      icon: Frame,
+      icon: FrameIcon,
     },
     {
       name: t("quickLinks.salesReport"),
       url: "/analytics",
-      icon: PieChart,
+      icon: PieChartIcon,
     },
     {
       name: t("quickLinks.roadmap"),
       url: "/",
-      icon: Map,
+      icon: MapIcon,
     },
   ];
 

@@ -121,6 +121,17 @@ export default function ProductsPage() {
   const { t } = useTranslation("products");
   const columns = useMemo(() => getProductColumns(t), [t]);
 
+  const columnLabels = useMemo(
+    () => ({
+      name: t("columns.product"),
+      category: t("columns.category"),
+      price: t("columns.price"),
+      stock: t("columns.stock"),
+      status: t("columns.status"),
+    }),
+    [t],
+  );
+
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
@@ -140,6 +151,7 @@ export default function ProductsPage() {
         data={sampleProducts}
         searchKey="name"
         searchPlaceholder={t("searchPlaceholder")}
+        columnLabels={columnLabels}
         filterableColumns={[
           {
             id: "category",
