@@ -46,6 +46,18 @@
     "tr": "Türkçe",
     "en": "English"
   },
+  "validation": {
+    "required": "Bu alan zorunludur.",
+    "invalidEmail": "Geçerli bir e-posta adresi girin.",
+    "invalidCredentials": "Geçerli bir e-posta ve şifre girin.",
+    "passwordRequired": "Şifre zorunludur.",
+    "nameRequired": "İsim zorunludur.",
+    "priceInvalid": "Fiyat sıfır veya daha büyük olmalıdır.",
+    "customerRequired": "Müşteri zorunludur.",
+    "productIdRequired": "Ürün zorunludur.",
+    "quantityInvalid": "Adet pozitif bir tam sayı olmalıdır.",
+    "atLeastOneItem": "En az bir sipariş kalemi ekleyin."
+  },
   "months": {
     "jan": "Oca",
     "feb": "Şub",

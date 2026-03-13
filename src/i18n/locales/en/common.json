@@ -46,6 +46,18 @@
     "tr": "Türkçe",
     "en": "English"
   },
+  "validation": {
+    "required": "This field is required.",
+    "invalidEmail": "Please enter a valid email address.",
+    "invalidCredentials": "Please enter a valid email and password.",
+    "passwordRequired": "Password is required.",
+    "nameRequired": "Name is required.",
+    "priceInvalid": "Price must be zero or greater.",
+    "customerRequired": "Customer is required.",
+    "productIdRequired": "Product is required.",
+    "quantityInvalid": "Quantity must be a positive whole number.",
+    "atLeastOneItem": "Add at least one order item."
+  },
   "months": {
     "jan": "Jan",
     "feb": "Feb",

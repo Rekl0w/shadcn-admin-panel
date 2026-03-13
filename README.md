@@ -1,11 +1,11 @@
 # Admin Panel
 
-A modern, themeable admin dashboard built with **React 19**, **TypeScript**, **Vite**, **Tailwind CSS v4**, and **shadcn/ui** (base-nova style).
+A modern, themeable admin dashboard built with **React 19**, **TypeScript**, **Vite 8**, **Tailwind CSS v4**, and **shadcn/ui** (base-nova style).
 
 ![React](https://img.shields.io/badge/React-19-blue?logo=react)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.9-blue?logo=typescript)
 ![Tailwind](https://img.shields.io/badge/Tailwind_CSS-4-blue?logo=tailwindcss)
-![Vite](https://img.shields.io/badge/Vite-7-purple?logo=vite)
+![Vite](https://img.shields.io/badge/Vite-8-purple?logo=vite)
 
 ## Table of Contents
 
@@ -29,6 +29,8 @@ A modern, themeable admin dashboard built with **React 19**, **TypeScript**, **V
 ---
 
 ## Getting Started
+
+> **Node.js:** Vite 8 requires Node.js `20.19+` or `22.12+`.
 
 ```bash
 # Install dependencies
@@ -58,7 +60,7 @@ The admin panel ships with a fully dynamic theme system that allows users to swi
 
 ### Architecture Overview
 
-```
+```text
 src/
 ├── store/theme-store.ts          # Zustand store — state, color definitions, CSS applicator
 ├── components/theme/
@@ -287,7 +289,7 @@ const primary = getComputedStyle(document.documentElement).getPropertyValue(
 
 ## Project Structure
 
-```
+```text
 src/
 ├── components/
 │   ├── data-table/         # Reusable data table with sorting, filtering, pagination
@@ -348,7 +350,7 @@ The interceptor automatically:
 
 The project uses **react-i18next** with namespace-based JSON files:
 
-```
+```text
 src/i18n/locales/
 ├── en/
 │   ├── common.json      # Shared strings (theme, months, days)
@@ -370,8 +372,9 @@ Supported languages: **English** (`en`) and **Turkish** (`tr`).
 | -------------- | --------- | --------------------------- |
 | React          | 19        | UI library                  |
 | TypeScript     | 5.9       | Type safety                 |
-| Vite           | 7         | Build tool & dev server     |
+| Vite           | 8         | Build tool & dev server     |
 | Tailwind CSS   | 4         | Utility-first CSS           |
+| Zod            | 4         | Runtime validation          |
 | shadcn/ui      | base-nova | Component library           |
 | Zustand        | 5         | State management            |
 | TanStack Query | 5         | Server state & caching      |

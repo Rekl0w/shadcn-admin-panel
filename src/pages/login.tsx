@@ -14,6 +14,7 @@ import { useAuthStore } from "@/store/auth-store";
 import { toast } from "sonner";
 import { GalleryVerticalEndIcon } from "@/components/ui/gallery-vertical-end";
 import { useTranslation } from "react-i18next";
+import { loginPayloadSchema } from "@/service/request/schemas";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("admin@example.com");
@@ -21,31 +22,42 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const { setAuth } = useAuthStore();
   const navigate = useNavigate();
-  const { t } = useTranslation("login");
+  const { t } = useTranslation(["login", "common"]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    const validationResult = loginPayloadSchema.safeParse({ email, password });
+
+    if (!validationResult.success) {
+      const messageKey =
+        validationResult.error.issues[0]?.message || "validation.required";
+      toast.error(t(messageKey, { ns: "common" }));
+      return;
+    }
+
     setLoading(true);
 
     // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
-    if (email && password) {
+    if (validationResult.data.email && validationResult.data.password) {
       setAuth(
         {
           id: "1",
           name: "Admin User",
-          email,
+          email: validationResult.data.email,
           role: "admin",
           avatar: "",
         },
         "fake-jwt-token",
       );
-      toast.success(t("title"));
+      toast.success(t("success"));
       navigate("/");
     } else {
-      toast.error("Invalid credentials");
+      toast.error(t("validation.invalidCredentials", { ns: "common" }));
     }
+
     setLoading(false);
   };
 

@@ -1,21 +1,13 @@
 import api from "@/service/config/config";
+import {
+  createProductPayloadSchema,
+  updateProductPayloadSchema,
+  type CreateProductPayload,
+  type UpdateProductPayload,
+} from "@/service/request/schemas";
 import { url } from "@/service/url/url";
 
-export interface CreateProductPayload {
-  name: string;
-  description?: string;
-  price: number;
-  category?: string;
-  status?: string;
-}
-
-export interface UpdateProductPayload {
-  name?: string;
-  description?: string;
-  price?: number;
-  category?: string;
-  status?: string;
-}
+export type { CreateProductPayload, UpdateProductPayload };
 
 export const productsRequest = {
   getAll: (params?: Record<string, unknown>) =>
@@ -23,10 +15,11 @@ export const productsRequest = {
 
   getById: (id: string) => api.get(url.products.getById(id)),
 
-  create: (data: CreateProductPayload) => api.post(url.products.create, data),
+  create: (data: CreateProductPayload) =>
+    api.post(url.products.create, createProductPayloadSchema.parse(data)),
 
   update: (id: string, data: UpdateProductPayload) =>
-    api.put(url.products.update(id), data),
+    api.put(url.products.update(id), updateProductPayloadSchema.parse(data)),
 
   delete: (id: string) => api.delete(url.products.delete(id)),
 

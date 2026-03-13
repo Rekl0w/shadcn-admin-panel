@@ -7,5 +7,6 @@
   "passwordPlaceholder": "Enter your password",
   "submit": "Sign in",
   "loading": "Signing in...",
-  "demo": "Demo: any email/password will work"
+  "demo": "Demo: any email/password will work",
+  "success": "Signed in successfully"
 }

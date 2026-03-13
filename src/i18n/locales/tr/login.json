@@ -7,5 +7,6 @@
   "passwordPlaceholder": "Şifrenizi girin",
   "submit": "Giriş Yap",
   "loading": "Giriş yapılıyor...",
-  "demo": "Demo: herhangi bir e-posta/şifre çalışacaktır"
+  "demo": "Demo: herhangi bir e-posta/şifre çalışacaktır",
+  "success": "Başarıyla giriş yapıldı"
 }
