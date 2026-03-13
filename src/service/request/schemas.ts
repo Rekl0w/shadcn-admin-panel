@@ -3,11 +3,7 @@ import { z } from "zod";
 const validationMessages = {
   required: "validation.required",
   invalidEmail: "validation.invalidEmail",
-  passwordRequired: "validation.passwordRequired",
-  nameRequired: "validation.nameRequired",
   priceInvalid: "validation.priceInvalid",
-  customerRequired: "validation.customerRequired",
-  productIdRequired: "validation.productIdRequired",
   quantityInvalid: "validation.quantityInvalid",
   atLeastOneItem: "validation.atLeastOneItem",
 } as const;
@@ -23,11 +19,7 @@ const emailSchema = z
   .min(1, validationMessages.required)
   .email(validationMessages.invalidEmail);
 
-const passwordSchema = z
-  .string()
-  .refine((value: string) => value.trim().length > 0, {
-    message: validationMessages.passwordRequired,
-  });
+const passwordSchema = requiredString();
 
 export const loginPayloadSchema = z.object({
   email: emailSchema,
@@ -35,7 +27,7 @@ export const loginPayloadSchema = z.object({
 });
 
 export const registerPayloadSchema = z.object({
-  name: requiredString(validationMessages.nameRequired),
+  name: requiredString(),
   email: emailSchema,
   password: passwordSchema,
 });
@@ -47,7 +39,7 @@ export const createUserPayloadSchema = registerPayloadSchema.extend({
 export const updateUserPayloadSchema = createUserPayloadSchema.partial();
 
 export const createProductPayloadSchema = z.object({
-  name: requiredString(validationMessages.nameRequired),
+  name: requiredString(),
   description: optionalTrimmedString(),
   price: z.number().finite().gte(0, validationMessages.priceInvalid),
   category: optionalTrimmedString(),
@@ -57,12 +49,12 @@ export const createProductPayloadSchema = z.object({
 export const updateProductPayloadSchema = createProductPayloadSchema.partial();
 
 export const orderItemSchema = z.object({
-  productId: requiredString(validationMessages.productIdRequired),
+  productId: requiredString(),
   quantity: z.number().int().positive(validationMessages.quantityInvalid),
 });
 
 export const createOrderPayloadSchema = z.object({
-  customer: requiredString(validationMessages.customerRequired),
+  customer: requiredString(),
   items: z.array(orderItemSchema).min(1, validationMessages.atLeastOneItem),
   status: optionalTrimmedString(),
 });

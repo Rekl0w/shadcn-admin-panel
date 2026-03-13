@@ -16,6 +16,59 @@
     "trackShipment": "Kargo takibi",
     "processRefund": "İade işlemi"
   },
+  "dialogs": {
+    "view": {
+      "title": "Sipariş detayları",
+      "description": "Seçili siparişin operasyon özetini inceleyin."
+    },
+    "track": {
+      "title": "Kargoyu güncelle",
+      "description": "{{id}} siparişi için kargo bilgilerini ekleyin veya düzenleyin.",
+      "submit": "Kargoyu kaydet",
+      "submitting": "Kargo bilgileri kaydediliyor..."
+    },
+    "refund": {
+      "title": "İade işlemi başlat",
+      "description": "{{id}} siparişi için iade kaydı oluşturun.",
+      "submit": "İadeyi işle",
+      "submitting": "İade işleniyor..."
+    }
+  },
+  "forms": {
+    "carrier": "Kargo firması",
+    "trackingNumber": "Takip numarası",
+    "amount": "İade tutarı",
+    "reason": "İade nedeni",
+    "restock": "Stoğa geri ekle",
+    "restockDescription": "İade edilen ürünler tekrar satılabilir durumdaysa stoku artırın.",
+    "placeholders": {
+      "carrier": "Kargo firması seçin",
+      "trackingNumber": "Takip numarasını girin",
+      "amount": "89.99",
+      "reason": "İade nedenini açıklayın"
+    }
+  },
+  "details": {
+    "orderId": "Sipariş No",
+    "createdAt": "Oluşturulma Tarihi",
+    "customer": "Müşteri",
+    "email": "E-posta",
+    "items": "Ürün sayısı",
+    "total": "Toplam",
+    "status": "Durum",
+    "carrier": "Kargo firması",
+    "trackingNumber": "Takip numarası",
+    "refundAmount": "İade tutarı",
+    "refundedAt": "İade tarihi",
+    "refundReason": "İade nedeni",
+    "notAvailable": "Henüz yok"
+  },
+  "carriers": {
+    "ups": "UPS",
+    "fedex": "FedEx",
+    "dhl": "DHL",
+    "local": "Yerel kurye"
+  },
   "filters": {
     "status": "Durum",
     "pending": "Beklemede",
@@ -30,5 +83,10 @@
     "shipped": "Kargoda",
     "delivered": "Teslim Edildi",
     "cancelled": "İptal Edildi"
+  },
+  "toasts": {
+    "orderIdCopied": "Sipariş ID panoya kopyalandı.",
+    "shipmentTracked": "Kargo bilgileri güncellendi.",
+    "refundProcessed": "İade kaydı oluşturuldu."
   }
 }

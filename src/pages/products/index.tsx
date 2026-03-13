@@ -1,12 +1,22 @@
 import { PlusIcon } from "@/components/ui/plus";
 import { Button } from "@/components/ui/button";
 import { DataTable } from "@/components/data-table/data-table";
-import { getProductColumns, type Product } from "@/pages/products/columns";
+import { getProductColumns } from "@/pages/products/columns";
 import { toast } from "sonner";
 import { useTranslation } from "react-i18next";
-import { useMemo } from "react";
+import { useCallback, useMemo, useState } from "react";
+import {
+  ProductDeleteDialog,
+  ProductDetailsDialog,
+  ProductFormDialog,
+} from "@/pages/products/dialogs";
+import {
+  toProductViewModel,
+  type Product,
+  type ProductFormValues,
+} from "@/pages/products/schema";
 
-const sampleProducts: Product[] = [
+const initialProducts: Product[] = [
   {
     id: "1",
     name: "Wireless Headphones",
@@ -117,9 +127,95 @@ const sampleProducts: Product[] = [
   },
 ];
 
+type ActiveProductDialog =
+  | { type: "create" }
+  | { type: "view"; product: Product }
+  | { type: "edit"; product: Product }
+  | { type: "delete"; product: Product }
+  | null;
+
 export default function ProductsPage() {
   const { t } = useTranslation("products");
-  const columns = useMemo(() => getProductColumns(t), [t]);
+  const [products, setProducts] = useState<Product[]>(initialProducts);
+  const [activeDialog, setActiveDialog] = useState<ActiveProductDialog>(null);
+
+  const closeDialog = useCallback(() => {
+    setActiveDialog(null);
+  }, []);
+
+  const activeProduct = useMemo(() => {
+    if (!activeDialog || !("product" in activeDialog)) {
+      return null;
+    }
+
+    return (
+      products.find(({ id }) => id === activeDialog.product.id) ??
+      activeDialog.product
+    );
+  }, [activeDialog, products]);
+
+  const handleCopyProductId = useCallback(
+    (product: Product) => {
+      void navigator.clipboard.writeText(product.id);
+      toast.success(t("toasts.productIdCopied"));
+    },
+    [t],
+  );
+
+  const handleCreateProduct = useCallback(
+    (payload: ProductFormValues) => {
+      setProducts((currentProducts) => [
+        toProductViewModel(
+          crypto.randomUUID?.() ?? `product-${Date.now()}`,
+          payload,
+        ),
+        ...currentProducts,
+      ]);
+      toast.success(t("toasts.created"));
+    },
+    [t],
+  );
+
+  const handleEditProduct = useCallback(
+    (payload: ProductFormValues) => {
+      if (!activeProduct) {
+        return;
+      }
+
+      setProducts((currentProducts) =>
+        currentProducts.map((product) =>
+          product.id === activeProduct.id
+            ? toProductViewModel(activeProduct.id, payload)
+            : product,
+        ),
+      );
+      toast.success(t("toasts.updated"));
+    },
+    [activeProduct, t],
+  );
+
+  const handleDeleteProduct = useCallback(() => {
+    if (!activeProduct) {
+      return;
+    }
+
+    setProducts((currentProducts) =>
+      currentProducts.filter((product) => product.id !== activeProduct.id),
+    );
+    closeDialog();
+    toast.success(t("toasts.deleted"));
+  }, [activeProduct, closeDialog, t]);
+
+  const columns = useMemo(
+    () =>
+      getProductColumns(t, {
+        onCopyId: handleCopyProductId,
+        onView: (product) => setActiveDialog({ type: "view", product }),
+        onEdit: (product) => setActiveDialog({ type: "edit", product }),
+        onDelete: (product) => setActiveDialog({ type: "delete", product }),
+      }),
+    [handleCopyProductId, t],
+  );
 
   const columnLabels = useMemo(
     () => ({
@@ -139,16 +235,14 @@ export default function ProductsPage() {
           <h2 className="text-2xl font-bold tracking-tight">{t("title")}</h2>
           <p className="text-muted-foreground">{t("description")}</p>
         </div>
-        <Button
-          onClick={() => toast.success("Create product dialog would open here")}
-        >
+        <Button onClick={() => setActiveDialog({ type: "create" })}>
           <PlusIcon size={16} className="mr-2" />
           {t("addProduct")}
         </Button>
       </div>
       <DataTable
         columns={columns}
-        data={sampleProducts}
+        data={products}
         searchKey="name"
         searchPlaceholder={t("searchPlaceholder")}
         columnLabels={columnLabels}
@@ -174,6 +268,58 @@ export default function ProductsPage() {
           },
         ]}
       />
+
+      {activeDialog?.type === "create" ? (
+        <ProductFormDialog
+          mode="create"
+          open
+          onOpenChange={(nextOpen) => {
+            if (!nextOpen) {
+              closeDialog();
+            }
+          }}
+          onSubmit={handleCreateProduct}
+        />
+      ) : null}
+
+      {activeDialog?.type === "view" && activeProduct ? (
+        <ProductDetailsDialog
+          open
+          product={activeProduct}
+          onOpenChange={(nextOpen) => {
+            if (!nextOpen) {
+              closeDialog();
+            }
+          }}
+        />
+      ) : null}
+
+      {activeDialog?.type === "edit" && activeProduct ? (
+        <ProductFormDialog
+          mode="edit"
+          open
+          product={activeProduct}
+          onOpenChange={(nextOpen) => {
+            if (!nextOpen) {
+              closeDialog();
+            }
+          }}
+          onSubmit={handleEditProduct}
+        />
+      ) : null}
+
+      {activeDialog?.type === "delete" && activeProduct ? (
+        <ProductDeleteDialog
+          open
+          product={activeProduct}
+          onOpenChange={(nextOpen) => {
+            if (!nextOpen) {
+              closeDialog();
+            }
+          }}
+          onConfirm={handleDeleteProduct}
+        />
+      ) : null}
     </div>
   );
 }

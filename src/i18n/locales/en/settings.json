@@ -13,13 +13,23 @@
     "name": "Name",
     "email": "Email",
     "bio": "Bio",
-    "bioPlaceholder": "Tell us about yourself..."
+    "bioPlaceholder": "Tell us about yourself...",
+    "submitting": "Saving profile...",
+    "placeholders": {
+      "name": "e.g. Admin User",
+      "email": "admin@example.com"
+    }
   },
   "company": {
     "title": "Company",
     "description": "Manage company details",
     "companyName": "Company Name",
-    "website": "Website"
+    "website": "Website",
+    "submitting": "Saving company details...",
+    "placeholders": {
+      "companyName": "e.g. Acme Inc.",
+      "website": "https://example.com"
+    }
   },
   "theme": {
     "title": "Theme",
@@ -42,19 +52,27 @@
     "title": "API Configuration",
     "description": "Manage API keys and endpoints",
     "baseUrl": "API Base URL",
-    "apiKey": "API Key"
+    "apiKey": "API Key",
+    "submitting": "Saving API settings...",
+    "placeholders": {
+      "baseUrl": "https://api.example.com",
+      "apiKey": "sk_live_xxxxxxxxx"
+    }
   },
   "danger": {
     "title": "Danger Zone",
     "description": "Irreversible actions below",
     "deleteAccount": "Delete Account",
     "deleteAccountDesc": "Permanently delete your account and all data",
-    "delete": "Delete"
+    "delete": "Delete",
+    "confirmTitle": "Delete account",
+    "confirmDescription": "This will not remove demo data here, but the real action would be irreversible. Do you want to continue?",
+    "confirmAction": "Confirm delete"
   },
   "toasts": {
     "profileUpdated": "Profile updated!",
     "companyUpdated": "Company info updated!",
     "apiSaved": "API settings saved!",
-    "deleteDisabled": "This action is disabled in demo mode"
+    "accountDeleted": "Account deletion was confirmed."
   }
 }

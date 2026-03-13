@@ -19,6 +19,7 @@ import { useAuthStore } from "@/store/auth-store";
 import { toast } from "sonner";
 import { GalleryVerticalEndIcon } from "@/components/ui/gallery-vertical-end";
 import { useTranslation } from "react-i18next";
+import { getFieldErrorState } from "@/lib/forms";
 import {
   loginPayloadSchema,
   type LoginPayload,
@@ -29,48 +30,18 @@ const defaultValues = {
   password: "password",
 } satisfies LoginPayload;
 
-const validateEmail = (value: string) => {
-  const validationResult = loginPayloadSchema.shape.email.safeParse(value);
-
-  return validationResult.success
-    ? undefined
-    : validationResult.error.issues[0]?.message || "validation.required";
-};
-
-const validatePassword = (value: string) => {
-  const validationResult = loginPayloadSchema.shape.password.safeParse(value);
-
-  return validationResult.success
-    ? undefined
-    : validationResult.error.issues[0]?.message || "validation.required";
-};
-
 export default function LoginPage() {
   const { setAuth } = useAuthStore();
   const navigate = useNavigate();
   const { t } = useTranslation(["login", "common"]);
 
-  const getTranslatedErrors = (errors: readonly unknown[]) =>
-    errors.flatMap((error) => {
-      if (typeof error !== "string" || !error.trim()) {
-        return [];
-      }
-
-      return [{ message: t(error, { ns: "common" }) }];
-    });
-
   const form = useForm({
     defaultValues,
+    validators: {
+      onChange: loginPayloadSchema,
+      onSubmit: loginPayloadSchema,
+    },
     onSubmit: async ({ value }) => {
-      const validationResult = loginPayloadSchema.safeParse(value);
-
-      if (!validationResult.success) {
-        const messageKey =
-          validationResult.error.issues[0]?.message || "validation.required";
-        toast.error(t(messageKey, { ns: "common" }));
-        return;
-      }
-
       // Simulate API call
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
@@ -78,7 +49,7 @@ export default function LoginPage() {
         {
           id: "1",
           name: "Admin User",
-          email: validationResult.data.email,
+          email: value.email,
           role: "admin",
           avatar: "",
         },
@@ -87,17 +58,6 @@ export default function LoginPage() {
 
       toast.success(t("success"));
       navigate("/");
-    },
-    onSubmitInvalid: ({ formApi }) => {
-      const fieldErrors = Object.values(formApi.state.fieldMeta).flatMap(
-        (meta) => meta?.errors ?? [],
-      );
-      const firstError = [...fieldErrors, ...formApi.state.errors].find(
-        (error): error is string =>
-          typeof error === "string" && error.trim().length > 0,
-      );
-
-      toast.error(t(firstError ?? "validation.required", { ns: "common" }));
     },
   });
 
@@ -121,18 +81,13 @@ export default function LoginPage() {
               void form.handleSubmit();
             }}
           >
-            <form.Field
-              name="email"
-              validators={{
-                onBlur: ({ value }) => validateEmail(value),
-                onChange: ({ value }) => validateEmail(value),
-                onSubmit: ({ value }) => validateEmail(value),
-              }}
-            >
+            <form.Field name="email">
               {(field) => {
-                const errors = getTranslatedErrors(field.state.meta.errors);
-                const hasError =
-                  field.state.meta.isTouched && errors.length > 0;
+                const { translatedErrors, hasError } = getFieldErrorState(
+                  field.state.meta.errors,
+                  t,
+                  field.state.meta.isTouched,
+                );
 
                 return (
                   <FormField data-invalid={hasError}>
@@ -151,25 +106,22 @@ export default function LoginPage() {
                           field.handleChange(event.target.value)
                         }
                       />
-                      {hasError ? <FieldError errors={errors} /> : null}
+                      {hasError ? (
+                        <FieldError errors={translatedErrors} />
+                      ) : null}
                     </FieldContent>
                   </FormField>
                 );
               }}
             </form.Field>
 
-            <form.Field
-              name="password"
-              validators={{
-                onBlur: ({ value }) => validatePassword(value),
-                onChange: ({ value }) => validatePassword(value),
-                onSubmit: ({ value }) => validatePassword(value),
-              }}
-            >
+            <form.Field name="password">
               {(field) => {
-                const errors = getTranslatedErrors(field.state.meta.errors);
-                const hasError =
-                  field.state.meta.isTouched && errors.length > 0;
+                const { translatedErrors, hasError } = getFieldErrorState(
+                  field.state.meta.errors,
+                  t,
+                  field.state.meta.isTouched,
+                );
 
                 return (
                   <FormField data-invalid={hasError}>
@@ -190,7 +142,9 @@ export default function LoginPage() {
                           field.handleChange(event.target.value)
                         }
                       />
-                      {hasError ? <FieldError errors={errors} /> : null}
+                      {hasError ? (
+                        <FieldError errors={translatedErrors} />
+                      ) : null}
                     </FieldContent>
                   </FormField>
                 );
@@ -204,7 +158,11 @@ export default function LoginPage() {
               })}
             >
               {({ canSubmit, isSubmitting }) => (
-                <Button type="submit" className="w-full" disabled={!canSubmit}>
+                <Button
+                  type="submit"
+                  className="w-full"
+                  disabled={!canSubmit || isSubmitting}
+                >
                   {isSubmitting ? t("loading") : t("submit")}
                 </Button>
               )}

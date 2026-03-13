@@ -16,6 +16,49 @@
     "editUser": "Kullanıcıyı düzenle",
     "deleteUser": "Kullanıcıyı sil"
   },
+  "form": {
+    "name": "Ad",
+    "email": "E-posta",
+    "password": "Şifre",
+    "role": "Rol",
+    "placeholders": {
+      "name": "Örn. Ayşe Yılmaz",
+      "email": "ornek@firma.com",
+      "password": "Geçici bir şifre oluşturun",
+      "role": "Rol seçin"
+    }
+  },
+  "details": {
+    "userId": "Kullanıcı ID",
+    "createdAt": "Oluşturulma Tarihi",
+    "role": "Rol",
+    "status": "Durum",
+    "name": "Ad",
+    "email": "E-posta"
+  },
+  "dialogs": {
+    "create": {
+      "title": "Kullanıcı oluştur",
+      "description": "Tabloya yeni bir kullanıcı ekleyin.",
+      "submit": "Kullanıcı oluştur",
+      "submitting": "Kullanıcı oluşturuluyor..."
+    },
+    "edit": {
+      "title": "Kullanıcıyı düzenle",
+      "description": "Seçili kullanıcının temel bilgilerini güncelleyin.",
+      "submit": "Değişiklikleri kaydet",
+      "submitting": "Değişiklikler kaydediliyor..."
+    },
+    "view": {
+      "title": "Kullanıcı detayları",
+      "description": "Seçili kullanıcının hesap özetini inceleyin."
+    },
+    "delete": {
+      "title": "Kullanıcıyı sil",
+      "description": "{{name}} kullanıcısını listeden kaldırmak istediğinize emin misiniz?",
+      "confirm": "Kullanıcıyı sil"
+    }
+  },
   "filters": {
     "role": "Rol",
     "status": "Durum",
@@ -35,5 +78,11 @@
     "active": "Aktif",
     "inactive": "Pasif",
     "banned": "Yasaklı"
+  },
+  "toasts": {
+    "created": "Kullanıcı oluşturuldu.",
+    "updated": "Kullanıcı güncellendi.",
+    "deleted": "Kullanıcı silindi.",
+    "userIdCopied": "Kullanıcı ID panoya kopyalandı."
   }
 }

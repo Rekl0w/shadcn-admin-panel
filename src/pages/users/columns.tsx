@@ -26,6 +26,13 @@ export interface User {
   createdAt: string;
 }
 
+export interface UserColumnActions {
+  onView: (user: User) => void;
+  onEdit: (user: User) => void;
+  onDelete: (user: User) => void;
+  onCopyId?: (user: User) => void;
+}
+
 const roleColors: Record<string, "default" | "secondary" | "outline"> = {
   admin: "default",
   editor: "secondary",
@@ -41,7 +48,10 @@ const statusColors: Record<
   banned: "destructive",
 };
 
-export function getUserColumns(t: TFunction): ColumnDef<User>[] {
+export function getUserColumns(
+  t: TFunction,
+  actions: UserColumnActions,
+): ColumnDef<User>[] {
   return [
     {
       id: "select",
@@ -151,21 +161,31 @@ export function getUserColumns(t: TFunction): ColumnDef<User>[] {
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>{t("common:table.actions")}</DropdownMenuLabel>
               <DropdownMenuItem
-                onClick={() => navigator.clipboard.writeText(user.id)}
+                onClick={() => {
+                  if (actions.onCopyId) {
+                    actions.onCopyId(user);
+                    return;
+                  }
+
+                  void navigator.clipboard.writeText(user.id);
+                }}
               >
                 {t("actions.copyUserId")}
               </DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>
+              <DropdownMenuItem onClick={() => actions.onView(user)}>
                 <EyeIcon size={16} className="mr-2" />
                 {t("actions.viewDetails")}
               </DropdownMenuItem>
-              <DropdownMenuItem>
+              <DropdownMenuItem onClick={() => actions.onEdit(user)}>
                 <Pencil className="mr-2 h-4 w-4" />
                 {t("actions.editUser")}
               </DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem className="text-destructive">
+              <DropdownMenuItem
+                className="text-destructive"
+                onClick={() => actions.onDelete(user)}
+              >
                 <Trash2 className="mr-2 h-4 w-4" />
                 {t("actions.deleteUser")}
               </DropdownMenuItem>

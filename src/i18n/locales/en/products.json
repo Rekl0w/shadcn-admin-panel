@@ -16,6 +16,59 @@
     "editProduct": "Edit product",
     "deleteProduct": "Delete product"
   },
+  "form": {
+    "name": "Product name",
+    "category": "Category",
+    "sku": "SKU",
+    "price": "Price",
+    "stock": "Stock",
+    "description": "Description",
+    "placeholders": {
+      "name": "e.g. Noise-cancelling headphones",
+      "category": "Select a category",
+      "sku": "PRD-001",
+      "price": "79.99",
+      "stock": "150",
+      "description": "Optional short description"
+    }
+  },
+  "details": {
+    "productId": "Product ID",
+    "name": "Product name",
+    "category": "Category",
+    "sku": "SKU",
+    "price": "Price",
+    "stock": "Stock",
+    "status": "Status",
+    "description": "Description",
+    "noDescription": "No description provided."
+  },
+  "dialogs": {
+    "create": {
+      "title": "Create product",
+      "description": "Add a new product to the table.",
+      "submit": "Create product",
+      "submitting": "Creating product..."
+    },
+    "edit": {
+      "title": "Edit product",
+      "description": "Update the selected product's catalog fields.",
+      "submit": "Save changes",
+      "submitting": "Saving changes..."
+    },
+    "view": {
+      "title": "Product details",
+      "description": "Review every table-facing field for the selected product."
+    },
+    "delete": {
+      "title": "Delete product",
+      "description": "Are you sure you want to remove {{name}} from the list?",
+      "confirm": "Delete product"
+    },
+    "form": {
+      "previewStatus": "Estimated stock status: {{status}}"
+    }
+  },
   "filters": {
     "category": "Category",
     "status": "Status",
@@ -31,5 +84,11 @@
     "in-stock": "In Stock",
     "low-stock": "Low Stock",
     "out-of-stock": "Out of Stock"
+  },
+  "toasts": {
+    "created": "Product created.",
+    "updated": "Product updated.",
+    "deleted": "Product deleted.",
+    "productIdCopied": "Product ID copied to clipboard."
   }
 }

@@ -16,15 +16,13 @@ import { EyeIcon } from "@/components/ui/eye";
 import { TruckIcon } from "@/components/ui/truck";
 import { RotateCCWIcon } from "@/components/ui/rotate-ccw";
 import type { TFunction } from "i18next";
+import type { Order } from "@/pages/orders/schema";
 
-export interface Order {
-  id: string;
-  customer: string;
-  email: string;
-  status: "pending" | "processing" | "shipped" | "delivered" | "cancelled";
-  total: number;
-  items: number;
-  createdAt: string;
+export interface OrderColumnActions {
+  onView: (order: Order) => void;
+  onTrackShipment: (order: Order) => void;
+  onProcessRefund: (order: Order) => void;
+  onCopyId?: (order: Order) => void;
 }
 
 const statusColors: Record<
@@ -38,7 +36,10 @@ const statusColors: Record<
   cancelled: "destructive",
 };
 
-export function getOrderColumns(t: TFunction): ColumnDef<Order>[] {
+export function getOrderColumns(
+  t: TFunction,
+  actions: OrderColumnActions,
+): ColumnDef<Order>[] {
   return [
     {
       id: "select",
@@ -138,20 +139,27 @@ export function getOrderColumns(t: TFunction): ColumnDef<Order>[] {
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>{t("common:table.actions")}</DropdownMenuLabel>
               <DropdownMenuItem
-                onClick={() => navigator.clipboard.writeText(order.id)}
+                onClick={() => {
+                  if (actions.onCopyId) {
+                    actions.onCopyId(order);
+                    return;
+                  }
+
+                  void navigator.clipboard.writeText(order.id);
+                }}
               >
                 {t("actions.copyOrderId")}
               </DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>
+              <DropdownMenuItem onClick={() => actions.onView(order)}>
                 <EyeIcon size={16} className="mr-2" />
                 {t("actions.viewDetails")}
               </DropdownMenuItem>
-              <DropdownMenuItem>
+              <DropdownMenuItem onClick={() => actions.onTrackShipment(order)}>
                 <TruckIcon size={16} className="mr-2" />
                 {t("actions.trackShipment")}
               </DropdownMenuItem>
-              <DropdownMenuItem>
+              <DropdownMenuItem onClick={() => actions.onProcessRefund(order)}>
                 <RotateCCWIcon size={16} className="mr-2" />
                 {t("actions.processRefund")}
               </DropdownMenuItem>

@@ -16,6 +16,59 @@
     "editProduct": "Ürünü düzenle",
     "deleteProduct": "Ürünü sil"
   },
+  "form": {
+    "name": "Ürün adı",
+    "category": "Kategori",
+    "sku": "SKU",
+    "price": "Fiyat",
+    "stock": "Stok",
+    "description": "Açıklama",
+    "placeholders": {
+      "name": "Örn. Gürültü engelleyen kulaklık",
+      "category": "Kategori seçin",
+      "sku": "PRD-001",
+      "price": "79.99",
+      "stock": "150",
+      "description": "İsteğe bağlı kısa açıklama"
+    }
+  },
+  "details": {
+    "productId": "Ürün ID",
+    "name": "Ürün adı",
+    "category": "Kategori",
+    "sku": "SKU",
+    "price": "Fiyat",
+    "stock": "Stok",
+    "status": "Durum",
+    "description": "Açıklama",
+    "noDescription": "Açıklama girilmedi."
+  },
+  "dialogs": {
+    "create": {
+      "title": "Ürün oluştur",
+      "description": "Tabloya yeni bir ürün ekleyin.",
+      "submit": "Ürün oluştur",
+      "submitting": "Ürün oluşturuluyor..."
+    },
+    "edit": {
+      "title": "Ürünü düzenle",
+      "description": "Seçili ürünün katalog bilgilerini güncelleyin.",
+      "submit": "Değişiklikleri kaydet",
+      "submitting": "Değişiklikler kaydediliyor..."
+    },
+    "view": {
+      "title": "Ürün detayları",
+      "description": "Seçili ürünün tabloya yansıyan tüm alanlarını inceleyin."
+    },
+    "delete": {
+      "title": "Ürünü sil",
+      "description": "{{name}} ürününü listeden kaldırmak istediğinize emin misiniz?",
+      "confirm": "Ürünü sil"
+    },
+    "form": {
+      "previewStatus": "Tahmini stok durumu: {{status}}"
+    }
+  },
   "filters": {
     "category": "Kategori",
     "status": "Durum",
@@ -31,5 +84,11 @@
     "in-stock": "Stokta",
     "low-stock": "Düşük Stok",
     "out-of-stock": "Stokta Yok"
+  },
+  "toasts": {
+    "created": "Ürün oluşturuldu.",
+    "updated": "Ürün güncellendi.",
+    "deleted": "Ürün silindi.",
+    "productIdCopied": "Ürün ID panoya kopyalandı."
   }
 }

@@ -3,6 +3,7 @@
     "save": "Kaydet",
     "saveChanges": "Değişiklikleri Kaydet",
     "cancel": "İptal",
+    "close": "Kapat",
     "delete": "Sil",
     "edit": "Düzenle",
     "create": "Oluştur",
@@ -49,13 +50,12 @@
   "validation": {
     "required": "Bu alan zorunludur.",
     "invalidEmail": "Geçerli bir e-posta adresi girin.",
+    "invalidUrl": "Geçerli bir URL girin.",
     "invalidCredentials": "Geçerli bir e-posta ve şifre girin.",
-    "passwordRequired": "Şifre zorunludur.",
-    "nameRequired": "İsim zorunludur.",
     "priceInvalid": "Fiyat sıfır veya daha büyük olmalıdır.",
-    "customerRequired": "Müşteri zorunludur.",
-    "productIdRequired": "Ürün zorunludur.",
+    "stockInvalid": "Stok sıfır veya daha büyük bir tam sayı olmalıdır.",
     "quantityInvalid": "Adet pozitif bir tam sayı olmalıdır.",
+    "refundAmountInvalid": "İade tutarı 0'dan büyük olmalı ve sipariş toplamını aşmamalıdır.",
     "atLeastOneItem": "En az bir sipariş kalemi ekleyin."
   },
   "months": {

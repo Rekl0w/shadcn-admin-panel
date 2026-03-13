@@ -1,9 +1,22 @@
 import { DataTable } from "@/components/data-table/data-table";
-import { getOrderColumns, type Order } from "@/pages/orders/columns";
+import { getOrderColumns } from "@/pages/orders/columns";
 import { useTranslation } from "react-i18next";
-import { useMemo } from "react";
+import { useCallback, useMemo, useState } from "react";
+import { toast } from "sonner";
+import {
+  OrderDetailsDialog,
+  RefundDialog,
+  TrackShipmentDialog,
+} from "@/pages/orders/dialogs";
+import {
+  buildRefundedOrder,
+  buildTrackedOrder,
+  type Order,
+  type RefundFormValues,
+  type TrackShipmentFormValues,
+} from "@/pages/orders/schema";
 
-const sampleOrders: Order[] = [
+const initialOrders: Order[] = [
   {
     id: "ORD-001",
     customer: "John Doe",
@@ -96,9 +109,86 @@ const sampleOrders: Order[] = [
   },
 ];
 
+type ActiveOrderDialog =
+  | { type: "view"; order: Order }
+  | { type: "track"; order: Order }
+  | { type: "refund"; order: Order }
+  | null;
+
 export default function OrdersPage() {
   const { t } = useTranslation("orders");
-  const columns = useMemo(() => getOrderColumns(t), [t]);
+  const [orders, setOrders] = useState<Order[]>(initialOrders);
+  const [activeDialog, setActiveDialog] = useState<ActiveOrderDialog>(null);
+
+  const closeDialog = useCallback(() => {
+    setActiveDialog(null);
+  }, []);
+
+  const activeOrder = useMemo(() => {
+    if (!activeDialog) {
+      return null;
+    }
+
+    return (
+      orders.find(({ id }) => id === activeDialog.order.id) ??
+      activeDialog.order
+    );
+  }, [activeDialog, orders]);
+
+  const handleCopyOrderId = useCallback(
+    (order: Order) => {
+      void navigator.clipboard.writeText(order.id);
+      toast.success(t("toasts.orderIdCopied"));
+    },
+    [t],
+  );
+
+  const handleTrackShipment = useCallback(
+    (values: TrackShipmentFormValues) => {
+      if (!activeOrder) {
+        return;
+      }
+
+      setOrders((currentOrders) =>
+        currentOrders.map((order) =>
+          order.id === activeOrder.id
+            ? buildTrackedOrder(order, values)
+            : order,
+        ),
+      );
+      toast.success(t("toasts.shipmentTracked"));
+    },
+    [activeOrder, t],
+  );
+
+  const handleProcessRefund = useCallback(
+    (values: RefundFormValues) => {
+      if (!activeOrder) {
+        return;
+      }
+
+      setOrders((currentOrders) =>
+        currentOrders.map((order) =>
+          order.id === activeOrder.id
+            ? buildRefundedOrder(order, values)
+            : order,
+        ),
+      );
+      toast.success(t("toasts.refundProcessed"));
+    },
+    [activeOrder, t],
+  );
+
+  const columns = useMemo(
+    () =>
+      getOrderColumns(t, {
+        onCopyId: handleCopyOrderId,
+        onView: (order) => setActiveDialog({ type: "view", order }),
+        onTrackShipment: (order) => setActiveDialog({ type: "track", order }),
+        onProcessRefund: (order) => setActiveDialog({ type: "refund", order }),
+      }),
+    [handleCopyOrderId, t],
+  );
 
   const columnLabels = useMemo(
     () => ({
@@ -122,7 +212,7 @@ export default function OrdersPage() {
       </div>
       <DataTable
         columns={columns}
-        data={sampleOrders}
+        data={orders}
         searchKey="customer"
         searchPlaceholder={t("searchPlaceholder")}
         columnLabels={columnLabels}
@@ -140,6 +230,44 @@ export default function OrdersPage() {
           },
         ]}
       />
+
+      {activeDialog?.type === "view" && activeOrder ? (
+        <OrderDetailsDialog
+          open
+          order={activeOrder}
+          onOpenChange={(nextOpen) => {
+            if (!nextOpen) {
+              closeDialog();
+            }
+          }}
+        />
+      ) : null}
+
+      {activeDialog?.type === "track" && activeOrder ? (
+        <TrackShipmentDialog
+          open
+          order={activeOrder}
+          onOpenChange={(nextOpen) => {
+            if (!nextOpen) {
+              closeDialog();
+            }
+          }}
+          onSubmit={handleTrackShipment}
+        />
+      ) : null}
+
+      {activeDialog?.type === "refund" && activeOrder ? (
+        <RefundDialog
+          open
+          order={activeOrder}
+          onOpenChange={(nextOpen) => {
+            if (!nextOpen) {
+              closeDialog();
+            }
+          }}
+          onSubmit={handleProcessRefund}
+        />
+      ) : null}
     </div>
   );
 }

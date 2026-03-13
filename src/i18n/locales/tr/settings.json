@@ -13,13 +13,23 @@
     "name": "Ad",
     "email": "E-posta",
     "bio": "Biyografi",
-    "bioPlaceholder": "Kendiniz hakkında bilgi verin..."
+    "bioPlaceholder": "Kendiniz hakkında bilgi verin...",
+    "submitting": "Profil kaydediliyor...",
+    "placeholders": {
+      "name": "Örn. Yönetici Kullanıcı",
+      "email": "admin@example.com"
+    }
   },
   "company": {
     "title": "Şirket",
     "description": "Şirket bilgilerini yönetin",
     "companyName": "Şirket Adı",
-    "website": "Web Sitesi"
+    "website": "Web Sitesi",
+    "submitting": "Şirket bilgileri kaydediliyor...",
+    "placeholders": {
+      "companyName": "Örn. Acme Inc.",
+      "website": "https://ornek.com"
+    }
   },
   "theme": {
     "title": "Tema",
@@ -42,19 +52,27 @@
     "title": "API Yapılandırması",
     "description": "API anahtarlarını ve uç noktaları yönetin",
     "baseUrl": "API Temel URL",
-    "apiKey": "API Anahtarı"
+    "apiKey": "API Anahtarı",
+    "submitting": "API ayarları kaydediliyor...",
+    "placeholders": {
+      "baseUrl": "https://api.ornek.com",
+      "apiKey": "sk_live_xxxxxxxxx"
+    }
   },
   "danger": {
     "title": "Tehlikeli Bölge",
     "description": "Aşağıdaki işlemler geri alınamaz",
     "deleteAccount": "Hesabı Sil",
     "deleteAccountDesc": "Hesabınızı ve tüm verilerinizi kalıcı olarak silin",
-    "delete": "Sil"
+    "delete": "Sil",
+    "confirmTitle": "Hesabı sil",
+    "confirmDescription": "Bu işlem demo verilerini kaldırmaz ancak gerçek akışta geri alınamaz. Devam etmek istiyor musunuz?",
+    "confirmAction": "Silmeyi onayla"
   },
   "toasts": {
     "profileUpdated": "Profil güncellendi!",
     "companyUpdated": "Şirket bilgileri güncellendi!",
     "apiSaved": "API ayarları kaydedildi!",
-    "deleteDisabled": "Bu işlem demo modunda devre dışı"
+    "accountDeleted": "Hesap silme isteği onaylandı."
   }
 }

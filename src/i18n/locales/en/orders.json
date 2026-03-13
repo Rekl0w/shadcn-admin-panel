@@ -16,6 +16,59 @@
     "trackShipment": "Track shipment",
     "processRefund": "Process refund"
   },
+  "dialogs": {
+    "view": {
+      "title": "Order details",
+      "description": "Review the selected order's operational summary."
+    },
+    "track": {
+      "title": "Update shipment",
+      "description": "Add or edit shipment details for order {{id}}.",
+      "submit": "Save shipment",
+      "submitting": "Saving shipment..."
+    },
+    "refund": {
+      "title": "Start refund",
+      "description": "Create a refund record for order {{id}}.",
+      "submit": "Process refund",
+      "submitting": "Processing refund..."
+    }
+  },
+  "forms": {
+    "carrier": "Carrier",
+    "trackingNumber": "Tracking number",
+    "amount": "Refund amount",
+    "reason": "Refund reason",
+    "restock": "Return items to stock",
+    "restockDescription": "Increase stock if the returned items can be resold.",
+    "placeholders": {
+      "carrier": "Select a carrier",
+      "trackingNumber": "Enter the tracking number",
+      "amount": "89.99",
+      "reason": "Explain the refund reason"
+    }
+  },
+  "details": {
+    "orderId": "Order ID",
+    "createdAt": "Created At",
+    "customer": "Customer",
+    "email": "Email",
+    "items": "Item count",
+    "total": "Total",
+    "status": "Status",
+    "carrier": "Carrier",
+    "trackingNumber": "Tracking number",
+    "refundAmount": "Refund amount",
+    "refundedAt": "Refunded At",
+    "refundReason": "Refund reason",
+    "notAvailable": "Not available yet"
+  },
+  "carriers": {
+    "ups": "UPS",
+    "fedex": "FedEx",
+    "dhl": "DHL",
+    "local": "Local courier"
+  },
   "filters": {
     "status": "Status",
     "pending": "Pending",
@@ -30,5 +83,10 @@
     "shipped": "Shipped",
     "delivered": "Delivered",
     "cancelled": "Cancelled"
+  },
+  "toasts": {
+    "orderIdCopied": "Order ID copied to clipboard.",
+    "shipmentTracked": "Shipment details updated.",
+    "refundProcessed": "Refund record created."
   }
 }

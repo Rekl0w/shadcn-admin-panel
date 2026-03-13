@@ -4,9 +4,15 @@ import { DataTable } from "@/components/data-table/data-table";
 import { getUserColumns, type User } from "@/pages/users/columns";
 import { toast } from "sonner";
 import { useTranslation } from "react-i18next";
-import { useMemo } from "react";
+import { useCallback, useMemo, useState } from "react";
+import {
+  UserDeleteDialog,
+  UserDetailsDialog,
+  UserFormDialog,
+  type UserFormPayload,
+} from "@/pages/users/dialogs";
 
-const sampleUsers: User[] = [
+const initialUsers: User[] = [
   {
     id: "1",
     name: "Alice Johnson",
@@ -105,9 +111,103 @@ const sampleUsers: User[] = [
   },
 ];
 
+type ActiveUserDialog =
+  | { type: "create" }
+  | { type: "view"; user: User }
+  | { type: "edit"; user: User }
+  | { type: "delete"; user: User }
+  | null;
+
 export default function UsersPage() {
   const { t } = useTranslation("users");
-  const columns = useMemo(() => getUserColumns(t), [t]);
+  const [users, setUsers] = useState<User[]>(initialUsers);
+  const [activeDialog, setActiveDialog] = useState<ActiveUserDialog>(null);
+
+  const closeDialog = useCallback(() => {
+    setActiveDialog(null);
+  }, []);
+
+  const activeUser = useMemo(() => {
+    if (!activeDialog || !("user" in activeDialog)) {
+      return null;
+    }
+
+    return (
+      users.find(({ id }) => id === activeDialog.user.id) ?? activeDialog.user
+    );
+  }, [activeDialog, users]);
+
+  const handleCopyUserId = useCallback(
+    (user: User) => {
+      void navigator.clipboard.writeText(user.id);
+      toast.success(t("toasts.userIdCopied"));
+    },
+    [t],
+  );
+
+  const handleCreateUser = useCallback(
+    (payload: UserFormPayload) => {
+      setUsers((currentUsers) => [
+        {
+          id: crypto.randomUUID?.() ?? `user-${Date.now()}`,
+          name: payload.name,
+          email: payload.email,
+          role: payload.role,
+          status: "active",
+          createdAt: new Date().toISOString().slice(0, 10),
+        },
+        ...currentUsers,
+      ]);
+      toast.success(t("toasts.created"));
+    },
+    [t],
+  );
+
+  const handleEditUser = useCallback(
+    (payload: UserFormPayload) => {
+      if (!activeUser) {
+        return;
+      }
+
+      setUsers((currentUsers) =>
+        currentUsers.map((user) =>
+          user.id === activeUser.id
+            ? {
+                ...user,
+                name: payload.name,
+                email: payload.email,
+                role: payload.role,
+              }
+            : user,
+        ),
+      );
+      toast.success(t("toasts.updated"));
+    },
+    [activeUser, t],
+  );
+
+  const handleDeleteUser = useCallback(() => {
+    if (!activeUser) {
+      return;
+    }
+
+    setUsers((currentUsers) =>
+      currentUsers.filter((user) => user.id !== activeUser.id),
+    );
+    closeDialog();
+    toast.success(t("toasts.deleted"));
+  }, [activeUser, closeDialog, t]);
+
+  const columns = useMemo(
+    () =>
+      getUserColumns(t, {
+        onCopyId: handleCopyUserId,
+        onView: (user) => setActiveDialog({ type: "view", user }),
+        onEdit: (user) => setActiveDialog({ type: "edit", user }),
+        onDelete: (user) => setActiveDialog({ type: "delete", user }),
+      }),
+    [handleCopyUserId, t],
+  );
 
   const columnLabels = useMemo(
     () => ({
@@ -127,16 +227,14 @@ export default function UsersPage() {
           <h2 className="text-2xl font-bold tracking-tight">{t("title")}</h2>
           <p className="text-muted-foreground">{t("description")}</p>
         </div>
-        <Button
-          onClick={() => toast.success("Create user dialog would open here")}
-        >
+        <Button onClick={() => setActiveDialog({ type: "create" })}>
           <UserPlus className="mr-2 h-4 w-4" />
           {t("addUser")}
         </Button>
       </div>
       <DataTable
         columns={columns}
-        data={sampleUsers}
+        data={users}
         searchKey="name"
         searchPlaceholder={t("searchPlaceholder")}
         columnLabels={columnLabels}
@@ -161,6 +259,58 @@ export default function UsersPage() {
           },
         ]}
       />
+
+      {activeDialog?.type === "create" ? (
+        <UserFormDialog
+          mode="create"
+          open
+          onOpenChange={(nextOpen) => {
+            if (!nextOpen) {
+              closeDialog();
+            }
+          }}
+          onSubmit={handleCreateUser}
+        />
+      ) : null}
+
+      {activeDialog?.type === "view" && activeUser ? (
+        <UserDetailsDialog
+          open
+          user={activeUser}
+          onOpenChange={(nextOpen) => {
+            if (!nextOpen) {
+              closeDialog();
+            }
+          }}
+        />
+      ) : null}
+
+      {activeDialog?.type === "edit" && activeUser ? (
+        <UserFormDialog
+          mode="edit"
+          open
+          user={activeUser}
+          onOpenChange={(nextOpen) => {
+            if (!nextOpen) {
+              closeDialog();
+            }
+          }}
+          onSubmit={handleEditUser}
+        />
+      ) : null}
+
+      {activeDialog?.type === "delete" && activeUser ? (
+        <UserDeleteDialog
+          open
+          user={activeUser}
+          onOpenChange={(nextOpen) => {
+            if (!nextOpen) {
+              closeDialog();
+            }
+          }}
+          onConfirm={handleDeleteUser}
+        />
+      ) : null}
     </div>
   );
 }

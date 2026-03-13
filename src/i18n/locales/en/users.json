@@ -16,6 +16,49 @@
     "editUser": "Edit user",
     "deleteUser": "Delete user"
   },
+  "form": {
+    "name": "Name",
+    "email": "Email",
+    "password": "Password",
+    "role": "Role",
+    "placeholders": {
+      "name": "e.g. Jane Doe",
+      "email": "person@company.com",
+      "password": "Create a temporary password",
+      "role": "Select a role"
+    }
+  },
+  "details": {
+    "userId": "User ID",
+    "createdAt": "Created At",
+    "role": "Role",
+    "status": "Status",
+    "name": "Name",
+    "email": "Email"
+  },
+  "dialogs": {
+    "create": {
+      "title": "Create user",
+      "description": "Add a new user to the table.",
+      "submit": "Create user",
+      "submitting": "Creating user..."
+    },
+    "edit": {
+      "title": "Edit user",
+      "description": "Update the selected user's basic information.",
+      "submit": "Save changes",
+      "submitting": "Saving changes..."
+    },
+    "view": {
+      "title": "User details",
+      "description": "Review the selected user's account summary."
+    },
+    "delete": {
+      "title": "Delete user",
+      "description": "Are you sure you want to remove {{name}} from the list?",
+      "confirm": "Delete user"
+    }
+  },
   "filters": {
     "role": "Role",
     "status": "Status",
@@ -35,5 +78,11 @@
     "active": "Active",
     "inactive": "Inactive",
     "banned": "Banned"
+  },
+  "toasts": {
+    "created": "User created.",
+    "updated": "User updated.",
+    "deleted": "User deleted.",
+    "userIdCopied": "User ID copied to clipboard."
   }
 }

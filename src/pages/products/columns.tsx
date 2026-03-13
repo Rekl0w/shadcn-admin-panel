@@ -14,15 +14,16 @@ import { Button } from "@/components/ui/button";
 import { MoreHorizontal, Pencil, Trash2 } from "lucide-react";
 import { EyeIcon } from "@/components/ui/eye";
 import type { TFunction } from "i18next";
+import {
+  getProductCategoryTranslationKey,
+  type Product,
+} from "@/pages/products/schema";
 
-export interface Product {
-  id: string;
-  name: string;
-  category: string;
-  price: number;
-  stock: number;
-  status: "in-stock" | "low-stock" | "out-of-stock";
-  sku: string;
+export interface ProductColumnActions {
+  onView: (product: Product) => void;
+  onEdit: (product: Product) => void;
+  onDelete: (product: Product) => void;
+  onCopyId?: (product: Product) => void;
 }
 
 const statusColors: Record<string, "default" | "secondary" | "destructive"> = {
@@ -31,7 +32,10 @@ const statusColors: Record<string, "default" | "secondary" | "destructive"> = {
   "out-of-stock": "destructive",
 };
 
-export function getProductColumns(t: TFunction): ColumnDef<Product>[] {
+export function getProductColumns(
+  t: TFunction,
+  actions: ProductColumnActions,
+): ColumnDef<Product>[] {
   return [
     {
       id: "select",
@@ -71,6 +75,12 @@ export function getProductColumns(t: TFunction): ColumnDef<Product>[] {
       header: ({ column }) => (
         <DataTableColumnHeader column={column} title={t("columns.category")} />
       ),
+      cell: ({ row }) =>
+        t(
+          getProductCategoryTranslationKey(
+            row.getValue("category") as Product["category"],
+          ),
+        ),
       filterFn: (row, id, value) => value.includes(row.getValue(id)),
     },
     {
@@ -123,21 +133,31 @@ export function getProductColumns(t: TFunction): ColumnDef<Product>[] {
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>{t("common:table.actions")}</DropdownMenuLabel>
               <DropdownMenuItem
-                onClick={() => navigator.clipboard.writeText(product.id)}
+                onClick={() => {
+                  if (actions.onCopyId) {
+                    actions.onCopyId(product);
+                    return;
+                  }
+
+                  void navigator.clipboard.writeText(product.id);
+                }}
               >
                 {t("actions.copyProductId")}
               </DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>
+              <DropdownMenuItem onClick={() => actions.onView(product)}>
                 <EyeIcon size={16} className="mr-2" />
                 {t("actions.viewDetails")}
               </DropdownMenuItem>
-              <DropdownMenuItem>
+              <DropdownMenuItem onClick={() => actions.onEdit(product)}>
                 <Pencil className="mr-2 h-4 w-4" />
                 {t("actions.editProduct")}
               </DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem className="text-destructive">
+              <DropdownMenuItem
+                className="text-destructive"
+                onClick={() => actions.onDelete(product)}
+              >
                 <Trash2 className="mr-2 h-4 w-4" />
                 {t("actions.deleteProduct")}
               </DropdownMenuItem>
