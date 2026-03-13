@@ -1,6 +1,6 @@
 # Admin Panel
 
-A modern, themeable admin dashboard built with **React 19**, **TypeScript**, **Vite 8**, **Tailwind CSS v4**, and **shadcn/ui** (base-nova style).
+A modern, themeable admin dashboard built with **React 19**, **TypeScript**, **Vite 8**, **Tailwind CSS v4**, **TanStack Form**, and **shadcn/ui** (base-nova style).
 
 ![React](https://img.shields.io/badge/React-19-blue?logo=react)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.9-blue?logo=typescript)
@@ -22,6 +22,7 @@ A modern, themeable admin dashboard built with **React 19**, **TypeScript**, **V
     - [Using Theme Values in Components](#using-theme-values-in-components)
   - [Project Structure](#project-structure)
   - [Service Layer](#service-layer)
+  - [Forms & Validation](#forms--validation)
   - [Internationalization (i18n)](#internationalization-i18n)
   - [Tech Stack](#tech-stack)
   - [License](#license)
@@ -31,10 +32,14 @@ A modern, themeable admin dashboard built with **React 19**, **TypeScript**, **V
 ## Getting Started
 
 > **Node.js:** Vite 8 requires Node.js `20.19+` or `22.12+`.
+> **Package manager:** The repository already ships with `bun.lock`, so `bun install` is the smoothest option. If you prefer npm, use `npm install --legacy-peer-deps` because the current Vite/Tailwind toolchain has a peer resolution mismatch.
 
 ```bash
-# Install dependencies
-npm install
+# Install dependencies (recommended)
+bun install
+
+# Alternative with npm
+npm install --legacy-peer-deps
 
 # Start development server
 npm run dev
@@ -44,6 +49,19 @@ npm run build
 
 # Preview production build
 npm run preview
+```
+
+If you prefer to stay fully on Bun, the equivalent commands are:
+
+```bash
+# Start development server
+bun run dev
+
+# Build for production
+bun run build
+
+# Preview production build
+bun run preview
 ```
 
 Create a `.env` file in the project root:
@@ -346,6 +364,54 @@ The interceptor automatically:
 
 ---
 
+## Forms & Validation
+
+The project now uses **TanStack Form** for client-side form state while keeping **Zod** schemas as the single validation source.
+
+### Current Integration
+
+The first live integration is the login page in `src/pages/login.tsx`.
+
+```text
+src/
+├── pages/login.tsx                 # TanStack Form useForm + field subscriptions
+├── service/request/schemas.ts      # Zod schemas reused by form validators
+├── components/ui/field.tsx         # Label / inline error presentation
+└── i18n/locales/*/common.json      # Localized validation messages
+```
+
+This setup gives you:
+
+- **Typed form state** with `@tanstack/react-form`
+- **Inline field errors** rendered through the existing shadcn/ui-style field helpers
+- **Localized validation feedback** using `common.validation.*` translation keys
+- **Reactive submit state** via `form.Subscribe` for loading/disable behavior
+
+### Pattern Used in the Login Form
+
+```tsx
+const form = useForm({
+  defaultValues: {
+    email: "admin@example.com",
+    password: "password",
+  },
+  onSubmit: async ({ value }) => {
+    // submit logic
+  },
+  onSubmitInvalid: ({ formApi }) => {
+    const firstError = Object.values(formApi.state.fieldMeta)
+      .flatMap((meta) => meta?.errors ?? [])
+      .find(Boolean);
+
+    toast.error(t(firstError ?? "validation.required", { ns: "common" }));
+  },
+});
+```
+
+Each field reuses the existing Zod schema fragments (`loginPayloadSchema.shape.email`, `loginPayloadSchema.shape.password`) so validation rules stay centralized instead of drifting across components.
+
+---
+
 ## Internationalization (i18n)
 
 The project uses **react-i18next** with namespace-based JSON files:
@@ -374,6 +440,7 @@ Supported languages: **English** (`en`) and **Turkish** (`tr`).
 | TypeScript     | 5.9       | Type safety                 |
 | Vite           | 8         | Build tool & dev server     |
 | Tailwind CSS   | 4         | Utility-first CSS           |
+| TanStack Form  | 1.28      | Form state & validation     |
 | Zod            | 4         | Runtime validation          |
 | shadcn/ui      | base-nova | Component library           |
 | Zustand        | 5         | State management            |
