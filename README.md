@@ -1,11 +1,11 @@
 # Admin Panel
 
-A modern, themeable admin dashboard built with **React 19**, **TypeScript**, **Vite 8**, **Tailwind CSS v4**, **TanStack Form**, and **shadcn/ui** (base-nova style).
+A modern, themeable admin dashboard built with **React 19.2**, **TypeScript 6.0**, **Vite 8.0**, **Tailwind CSS 4.2**, **TanStack Form 1.28**, and **shadcn/ui** components generated via **shadcn 4.1** (base-nova style).
 
-![React](https://img.shields.io/badge/React-19-blue?logo=react)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.9-blue?logo=typescript)
-![Tailwind](https://img.shields.io/badge/Tailwind_CSS-4-blue?logo=tailwindcss)
-![Vite](https://img.shields.io/badge/Vite-8-purple?logo=vite)
+![React](https://img.shields.io/badge/React-19.2.4-blue?logo=react)
+![TypeScript](https://img.shields.io/badge/TypeScript-6.0.2-blue?logo=typescript)
+![Tailwind](https://img.shields.io/badge/Tailwind_CSS-4.2.2-blue?logo=tailwindcss)
+![Vite](https://img.shields.io/badge/Vite-8.0.2-purple?logo=vite)
 
 ## Table of Contents
 
@@ -436,24 +436,26 @@ Supported languages: **English** (`en`) and **Turkish** (`tr`).
 
 ## Tech Stack
 
-| Technology     | Version   | Purpose                     |
-| -------------- | --------- | --------------------------- |
-| React          | 19        | UI library                  |
-| TypeScript     | 5.9       | Type safety                 |
-| Vite           | 8         | Build tool & dev server     |
-| Tailwind CSS   | 4         | Utility-first CSS           |
-| TanStack Form  | 1.28      | Form state & validation     |
-| Zod            | 4         | Runtime validation          |
-| shadcn/ui      | base-nova | Component library           |
-| Zustand        | 5         | State management            |
-| TanStack Query | 5         | Server state & caching      |
-| TanStack Table | 8         | Data tables                 |
-| React Router   | 7         | Client-side routing         |
-| Axios          | 1.x       | HTTP client                 |
-| react-i18next  | 16        | Internationalization        |
-| Recharts       | 3         | Charts & data visualization |
-| Motion         | 12        | Animations                  |
-| Lucide React   | 0.575     | Icon library                |
+Versions below mirror the semver entries currently declared in `package.json`.
+
+| Technology     | Version    | Purpose                     |
+| -------------- | ---------- | --------------------------- |
+| React          | `^19.2.4`  | UI library                  |
+| TypeScript     | `~6.0.2`   | Type safety                 |
+| Vite           | `^8.0.2`   | Build tool & dev server     |
+| Tailwind CSS   | `^4.2.2`   | Utility-first CSS           |
+| TanStack Form  | `^1.28.5`  | Form state & validation     |
+| Zod            | `^4.3.6`   | Runtime validation          |
+| shadcn/ui      | `^4.1.0`   | Component scaffolding       |
+| Zustand        | `^5.0.12`  | State management            |
+| TanStack Query | `^5.95.2`  | Server state & caching      |
+| TanStack Table | `^8.21.3`  | Data tables                 |
+| React Router   | `^7.13.2`  | Client-side routing         |
+| Axios          | `^1.13.6`  | HTTP client                 |
+| react-i18next  | `^16.6.5`  | Internationalization        |
+| Recharts       | `^3.8.0`   | Charts & data visualization |
+| Motion         | `^12.38.0` | Animations                  |
+| Lucide React   | `^1.0.1`   | Icon library                |
 
 ---
 
