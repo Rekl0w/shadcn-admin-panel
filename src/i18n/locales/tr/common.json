@@ -7,6 +7,8 @@
     "delete": "Sil",
     "edit": "Düzenle",
     "create": "Oluştur",
+    "showPassword": "Şifreyi göster",
+    "hidePassword": "Şifreyi gizle",
     "search": "Ara",
     "filter": "Filtrele",
     "reset": "Sıfırla",
