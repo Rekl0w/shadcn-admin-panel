@@ -6,9 +6,10 @@ import { toast } from "sonner";
 import { useTranslation } from "react-i18next";
 import { useCallback, useMemo, useState } from "react";
 import {
+  UserCreateDialog,
   UserDeleteDialog,
   UserDetailsDialog,
-  UserFormDialog,
+  UserEditDialog,
   type UserFormPayload,
 } from "@/pages/users/dialogs";
 
@@ -261,8 +262,7 @@ export default function UsersPage() {
       />
 
       {activeDialog?.type === "create" ? (
-        <UserFormDialog
-          mode="create"
+        <UserCreateDialog
           open
           onOpenChange={(nextOpen) => {
             if (!nextOpen) {
@@ -286,8 +286,7 @@ export default function UsersPage() {
       ) : null}
 
       {activeDialog?.type === "edit" && activeUser ? (
-        <UserFormDialog
-          mode="edit"
+        <UserEditDialog
           open
           user={activeUser}
           onOpenChange={(nextOpen) => {
