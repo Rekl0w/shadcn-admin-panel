@@ -1,11 +1,11 @@
 # Admin Panel
 
-A modern, themeable admin dashboard built with **React 19.2**, **TypeScript 6.0**, **Vite 8.0**, **Tailwind CSS 4.2**, **TanStack Form 1.28**, and **shadcn/ui** components generated via **shadcn 4.1** (base-nova style).
+A modern, themeable admin dashboard built with **React 19.2**, **TypeScript 6.0**, **Vite 8.0**, **Tailwind CSS 4.2**, **TanStack Form 1.28.6**, and **shadcn/ui** components generated via **shadcn 4.1.2** (base-nova style), with **Lucide React** and **lucide-animated** icons.
 
 ![React](https://img.shields.io/badge/React-19.2.4-blue?logo=react)
 ![TypeScript](https://img.shields.io/badge/TypeScript-6.0.2-blue?logo=typescript)
 ![Tailwind](https://img.shields.io/badge/Tailwind_CSS-4.2.2-blue?logo=tailwindcss)
-![Vite](https://img.shields.io/badge/Vite-8.0.2-purple?logo=vite)
+![Vite](https://img.shields.io/badge/Vite-8.0.3-purple?logo=vite)
 
 ## Table of Contents
 
@@ -34,14 +34,14 @@ A modern, themeable admin dashboard built with **React 19.2**, **TypeScript 6.0*
 ## Getting Started
 
 > **Node.js:** Vite 8 requires Node.js `20.19+` or `22.12+`.
-> **Package manager:** The repository already ships with `bun.lock`, so `bun install` is the smoothest option. If you prefer npm, use `npm install --legacy-peer-deps` because the current Vite/Tailwind toolchain has a peer resolution mismatch.
+> **Package manager:** The repository ships with `bun.lock`, and both `bun install` and plain `npm install` work with the current dependency graph.
 
 ```bash
 # Install dependencies (recommended)
 bun install
 
 # Alternative with npm
-npm install --legacy-peer-deps
+npm install
 
 # Start development server
 npm run dev
@@ -438,24 +438,26 @@ Supported languages: **English** (`en`) and **Turkish** (`tr`).
 
 Versions below mirror the semver entries currently declared in `package.json`.
 
-| Technology     | Version    | Purpose                     |
-| -------------- | ---------- | --------------------------- |
-| React          | `^19.2.4`  | UI library                  |
-| TypeScript     | `~6.0.2`   | Type safety                 |
-| Vite           | `^8.0.2`   | Build tool & dev server     |
-| Tailwind CSS   | `^4.2.2`   | Utility-first CSS           |
-| TanStack Form  | `^1.28.5`  | Form state & validation     |
-| Zod            | `^4.3.6`   | Runtime validation          |
-| shadcn/ui      | `^4.1.0`   | Component scaffolding       |
-| Zustand        | `^5.0.12`  | State management            |
-| TanStack Query | `^5.95.2`  | Server state & caching      |
-| TanStack Table | `^8.21.3`  | Data tables                 |
-| React Router   | `^7.13.2`  | Client-side routing         |
-| Axios          | `^1.13.6`  | HTTP client                 |
-| react-i18next  | `^16.6.5`  | Internationalization        |
-| Recharts       | `^3.8.0`   | Charts & data visualization |
-| Motion         | `^12.38.0` | Animations                  |
-| Lucide React   | `^1.0.1`   | Icon library                |
+| Technology      | Version    | Purpose                          |
+| --------------- | ---------- | -------------------------------- |
+| React           | `^19.2.4`  | UI library                       |
+| TypeScript      | `~6.0.2`   | Type safety                      |
+| Vite            | `^8.0.3`   | Build tool & dev server          |
+| Tailwind CSS    | `^4.2.2`   | Utility-first CSS                |
+| TanStack Form   | `^1.28.6`  | Form state & validation          |
+| TanStack Query  | `^5.96.2`  | Server state & caching           |
+| TanStack Table  | `^8.21.3`  | Data tables                      |
+| React Router    | `^7.14.0`  | Client-side routing              |
+| Axios           | `^1.14.0`  | HTTP client                      |
+| i18next         | `^26.0.3`  | Core internationalization engine |
+| react-i18next   | `^17.0.2`  | React i18n bindings              |
+| Recharts        | `^3.8.1`   | Charts & data visualization      |
+| Motion          | `^12.38.0` | Animations                       |
+| Lucide React    | `^1.7.0`   | Static icon library              |
+| lucide-animated | `^1.0.0`   | Animated icon library            |
+| Zod             | `^4.3.6`   | Runtime validation               |
+| Zustand         | `^5.0.12`  | State management                 |
+| shadcn CLI / ui | `^4.1.2`   | Component scaffolding            |
 
 ---
 
