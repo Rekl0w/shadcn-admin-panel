@@ -15,6 +15,7 @@ import {
   FieldLabel,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import { PasswordInput } from "@/components/ui/password-input";
 import { useAuthStore } from "@/store/auth-store";
 import { toast } from "sonner";
 import { GalleryVerticalEndIcon } from "@/components/ui/gallery-vertical-end";
@@ -129,13 +130,12 @@ export default function LoginPage() {
                       {t("password")}
                     </FieldLabel>
                     <FieldContent>
-                      <Input
+                      <PasswordInput
                         autoComplete="current-password"
                         aria-invalid={hasError}
                         id={field.name}
                         name={field.name}
                         placeholder={t("passwordPlaceholder")}
-                        type="password"
                         value={field.state.value}
                         onBlur={field.handleBlur}
                         onChange={(event) =>
