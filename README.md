@@ -372,11 +372,15 @@ The project now uses **TanStack Form** for client-side form state while keeping 
 
 ### Current Integration
 
-The first live integration is the login page in `src/pages/login.tsx`.
+TanStack Form is now used across the app in the login page, settings page, and CRUD/action dialogs under users, products, and orders.
 
 ```text
 src/
-├── pages/login.tsx                 # TanStack Form useForm + field subscriptions
+├── pages/login.tsx                 # Auth form
+├── pages/settings.tsx              # Profile, company, and API settings forms
+├── pages/users/dialogs/            # Create / edit user forms
+├── pages/products/dialogs/         # Create / edit product forms
+├── pages/orders/dialogs/           # Track shipment + refund forms
 ├── service/request/schemas.ts      # Zod schemas reused by form validators
 ├── components/ui/field.tsx         # Label / inline error presentation
 └── i18n/locales/*/common.json      # Localized validation messages
