@@ -18,6 +18,7 @@ import {
   FieldLabel,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import { PasswordInput } from "@/components/ui/password-input";
 import { Separator } from "@/components/ui/separator";
 import { Switch } from "@/components/ui/switch";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -577,10 +578,9 @@ export default function SettingsPage() {
                           {t("api.apiKey")}
                         </FieldLabel>
                         <FieldContent>
-                          <Input
+                          <PasswordInput
                             id={field.name}
                             name={field.name}
-                            type="password"
                             value={field.state.value}
                             placeholder={t("api.placeholders.apiKey")}
                             aria-invalid={hasError}
