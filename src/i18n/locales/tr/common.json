@@ -39,6 +39,10 @@
     "dark": "Koyu",
     "system": "Sistem"
   },
+  "password": {
+    "show": "Şifreyi göster",
+    "hide": "Şifreyi gizle"
+  },
   "notFound": {
     "title": "Sayfa Bulunamadı",
     "description": "Aradığınız sayfa bulunamadı veya taşınmış olabilir."

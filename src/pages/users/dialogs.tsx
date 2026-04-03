@@ -12,6 +12,7 @@ import {
   FieldLabel,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import { PasswordInput } from "@/components/ui/password-input";
 import {
   Select,
   SelectContent,
@@ -257,10 +258,9 @@ export function UserFormDialog({
                     {t("form.password")}
                   </FieldLabel>
                   <FieldContent>
-                    <Input
+                    <PasswordInput
                       id={field.name}
                       name={field.name}
-                      type="password"
                       value={field.state.value}
                       placeholder={t("form.placeholders.password")}
                       aria-invalid={hasError}
