@@ -6,9 +6,10 @@ import { toast } from "sonner";
 import { useTranslation } from "react-i18next";
 import { useCallback, useMemo, useState } from "react";
 import {
+  ProductCreateDialog,
   ProductDeleteDialog,
   ProductDetailsDialog,
-  ProductFormDialog,
+  ProductEditDialog,
 } from "@/pages/products/dialogs";
 import {
   toProductViewModel,
@@ -270,8 +271,7 @@ export default function ProductsPage() {
       />
 
       {activeDialog?.type === "create" ? (
-        <ProductFormDialog
-          mode="create"
+        <ProductCreateDialog
           open
           onOpenChange={(nextOpen) => {
             if (!nextOpen) {
@@ -295,8 +295,7 @@ export default function ProductsPage() {
       ) : null}
 
       {activeDialog?.type === "edit" && activeProduct ? (
-        <ProductFormDialog
-          mode="edit"
+        <ProductEditDialog
           open
           product={activeProduct}
           onOpenChange={(nextOpen) => {

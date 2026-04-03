@@ -1,9 +1,10 @@
-import type { ReactNode } from "react";
 import { useForm } from "@tanstack/react-form";
 import { useTranslation } from "react-i18next";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { DialogClose, DialogFooter } from "@/components/ui/dialog";
+
+import {
+  DialogFormActions,
+  DialogShell,
+} from "@/components/dialogs/dialog-shell";
 import {
   Field as FormField,
   FieldContent,
@@ -19,11 +20,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { ConfirmDialog } from "@/components/dialogs/confirm-dialog";
-import {
-  DialogFormActions,
-  DialogShell,
-} from "@/components/dialogs/dialog-shell";
 import { getFieldErrorState } from "@/lib/forms";
 import {
   emptyProductFormValues,
@@ -32,39 +28,9 @@ import {
   productCategoryValues,
   productFormSchema,
   toProductFormValues,
-  type Product,
-  type ProductFormValues,
 } from "@/pages/products/schema";
 
-const statusVariants: Record<
-  Product["status"],
-  "default" | "secondary" | "destructive"
-> = {
-  "in-stock": "default",
-  "low-stock": "secondary",
-  "out-of-stock": "destructive",
-};
-
-interface ProductFormDialogProps {
-  mode: "create" | "edit";
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
-  product?: Product;
-  onSubmit: (payload: ProductFormValues) => void;
-}
-
-interface ProductDetailsDialogProps {
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
-  product: Product;
-}
-
-interface ProductDeleteDialogProps {
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
-  product: Product;
-  onConfirm: () => void;
-}
+import type { ProductFormDialogProps } from "./types";
 
 export function ProductFormDialog({
   mode,
@@ -352,102 +318,5 @@ export function ProductFormDialog({
         </form.Field>
       </form>
     </DialogShell>
-  );
-}
-
-export function ProductDetailsDialog({
-  open,
-  onOpenChange,
-  product,
-}: ProductDetailsDialogProps) {
-  const { t, i18n } = useTranslation(["products", "common"]);
-  const locale = i18n.language.startsWith("tr") ? "tr-TR" : "en-US";
-
-  return (
-    <DialogShell
-      open={open}
-      onOpenChange={onOpenChange}
-      title={t("dialogs.view.title")}
-      description={t("dialogs.view.description")}
-      footer={
-        <DialogFooter>
-          <DialogClose render={<Button type="button" variant="outline" />}>
-            {t("actions.close", { ns: "common" })}
-          </DialogClose>
-        </DialogFooter>
-      }
-    >
-      <div className="grid gap-4 md:grid-cols-2">
-        <DetailItem label={t("details.productId")} value={product.id} mono />
-        <DetailItem label={t("details.sku")} value={product.sku} mono />
-        <DetailItem label={t("details.name")} value={product.name} />
-        <DetailItem
-          label={t("details.category")}
-          value={t(getProductCategoryTranslationKey(product.category))}
-        />
-        <DetailItem
-          label={t("details.price")}
-          value={new Intl.NumberFormat(locale, {
-            style: "currency",
-            currency: "USD",
-          }).format(product.price)}
-        />
-        <DetailItem label={t("details.stock")} value={product.stock} />
-        <DetailItem
-          label={t("details.status")}
-          value={
-            <Badge variant={statusVariants[product.status]}>
-              {t(`statuses.${product.status}`)}
-            </Badge>
-          }
-        />
-        <DetailItem
-          label={t("details.description")}
-          value={product.description || t("details.noDescription")}
-        />
-      </div>
-    </DialogShell>
-  );
-}
-
-export function ProductDeleteDialog({
-  open,
-  onOpenChange,
-  product,
-  onConfirm,
-}: ProductDeleteDialogProps) {
-  const { t } = useTranslation(["products", "common"]);
-
-  return (
-    <ConfirmDialog
-      open={open}
-      onOpenChange={onOpenChange}
-      title={t("dialogs.delete.title")}
-      description={t("dialogs.delete.description", { name: product.name })}
-      confirmLabel={t("dialogs.delete.confirm")}
-      cancelLabel={t("actions.cancel", { ns: "common" })}
-      onConfirm={onConfirm}
-    />
-  );
-}
-
-function DetailItem({
-  label,
-  value,
-  mono = false,
-}: {
-  label: string;
-  value: ReactNode;
-  mono?: boolean;
-}) {
-  return (
-    <div className="space-y-1 rounded-lg border p-3">
-      <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
-        {label}
-      </p>
-      <div className={mono ? "font-mono text-sm" : "text-sm font-medium"}>
-        {value}
-      </div>
-    </div>
   );
 }
