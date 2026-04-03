@@ -26,4 +26,16 @@ export default defineConfig([
       ],
     },
   },
+  {
+    files: ["src/components/ui/**/*.{ts,tsx}"],
+    rules: {
+      "react-refresh/only-export-components": "off",
+    },
+  },
+  {
+    files: ["src/components/data-table/data-table.tsx"],
+    rules: {
+      "react-hooks/incompatible-library": "off",
+    },
+  },
 ]);
