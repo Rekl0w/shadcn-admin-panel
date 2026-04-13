@@ -452,7 +452,7 @@ Versions below mirror the semver entries currently declared in `package.json`.
 | TanStack Query  | `^5.96.2`  | Server state & caching           |
 | TanStack Table  | `^8.21.3`  | Data tables                      |
 | React Router    | `^7.14.0`  | Client-side routing              |
-| Axios           | `^1.14.0`  | HTTP client                      |
+| Axios           | `^1.15.0`  | HTTP client                      |
 | i18next         | `^26.0.3`  | Core internationalization engine |
 | react-i18next   | `^17.0.2`  | React i18n bindings              |
 | Recharts        | `^3.8.1`   | Charts & data visualization      |
