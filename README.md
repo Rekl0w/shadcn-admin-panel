@@ -1,11 +1,11 @@
 # Admin Panel
 
-A modern, themeable admin dashboard built with **React 19.2**, **TypeScript 6.0**, **Vite 8.0**, **Tailwind CSS 4.2**, **TanStack Form 1.28.6**, and **shadcn/ui** components generated via **shadcn 4.1.2** (base-nova style), with **Lucide React** and **lucide-animated** icons.
+A modern, themeable admin dashboard built with **React 19.2.7**, **TypeScript 6.0.3**, **Vite 8.1**, **Tailwind CSS 4.3**, **TanStack Form 1.33**, and **shadcn/ui** components generated via **shadcn 4.11** (base-nova style), with **Lucide React** and **lucide-animated** icons.
 
-![React](https://img.shields.io/badge/React-19.2.4-blue?logo=react)
-![TypeScript](https://img.shields.io/badge/TypeScript-6.0.2-blue?logo=typescript)
-![Tailwind](https://img.shields.io/badge/Tailwind_CSS-4.2.2-blue?logo=tailwindcss)
-![Vite](https://img.shields.io/badge/Vite-8.0.3-purple?logo=vite)
+![React](https://img.shields.io/badge/React-19.2.7-blue?logo=react)
+![TypeScript](https://img.shields.io/badge/TypeScript-6.0.3-blue?logo=typescript)
+![Tailwind](https://img.shields.io/badge/Tailwind_CSS-4.3.1-blue?logo=tailwindcss)
+![Vite](https://img.shields.io/badge/Vite-8.1.0-purple?logo=vite)
 
 ## Table of Contents
 
@@ -444,24 +444,27 @@ Versions below mirror the semver entries currently declared in `package.json`.
 
 | Technology      | Version    | Purpose                          |
 | --------------- | ---------- | -------------------------------- |
-| React           | `^19.2.4`  | UI library                       |
-| TypeScript      | `~6.0.2`   | Type safety                      |
-| Vite            | `^8.0.3`   | Build tool & dev server          |
-| Tailwind CSS    | `^4.2.2`   | Utility-first CSS                |
-| TanStack Form   | `^1.28.6`  | Form state & validation          |
-| TanStack Query  | `^5.96.2`  | Server state & caching           |
+| React           | `^19.2.7`  | UI library                       |
+| React DOM       | `^19.2.7`  | React browser renderer           |
+| TypeScript      | `~6.0.3`   | Type safety                      |
+| Vite            | `^8.1.0`   | Build tool & dev server          |
+| Tailwind CSS    | `^4.3.1`   | Utility-first CSS                |
+| Base UI         | `^1.6.0`   | Headless component primitives    |
+| TanStack Form   | `^1.33.0`  | Form state & validation          |
+| TanStack Query  | `^5.101.1` | Server state & caching           |
 | TanStack Table  | `^8.21.3`  | Data tables                      |
-| React Router    | `^7.14.0`  | Client-side routing              |
-| Axios           | `^1.15.0`  | HTTP client                      |
-| i18next         | `^26.0.3`  | Core internationalization engine |
-| react-i18next   | `^17.0.2`  | React i18n bindings              |
-| Recharts        | `^3.8.1`   | Charts & data visualization      |
-| Motion          | `^12.38.0` | Animations                       |
-| Lucide React    | `^1.7.0`   | Static icon library              |
-| lucide-animated | `^1.0.0`   | Animated icon library            |
-| Zod             | `^4.3.6`   | Runtime validation               |
-| Zustand         | `^5.0.12`  | State management                 |
-| shadcn CLI / ui | `^4.1.2`   | Component scaffolding            |
+| React Router    | `^8.0.1`   | Client-side routing              |
+| Axios           | `^1.18.1`  | HTTP client                      |
+| i18next         | `^26.3.2`  | Core internationalization engine |
+| react-i18next   | `^17.0.8`  | React i18n bindings              |
+| Recharts        | `^3.9.0`   | Charts & data visualization      |
+| Motion          | `^12.42.0` | Animations                       |
+| Lucide React    | `^1.21.0`  | Static icon library              |
+| lucide-animated | `^1.0.4`   | Animated icon library            |
+| React DayPicker | `^10.0.1`  | Calendar and date selection      |
+| Zod             | `^4.4.3`   | Runtime validation               |
+| Zustand         | `^5.0.14`  | State management                 |
+| shadcn CLI / ui | `^4.11.0`  | Component scaffolding            |
 
 ---
 
